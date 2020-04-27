@@ -1,0 +1,3 @@
+com\datapirates\ums\RegisterServlet.class
+com\datapirates\ums\User.class
+com\datapirates\ums\JdbcRegisterService.class
