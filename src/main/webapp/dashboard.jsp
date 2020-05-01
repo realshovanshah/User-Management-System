@@ -1,6 +1,6 @@
 <%-- 
-    Document   : index
-    Created on : Apr 30, 2020, 7:27:13 PM
+    Document   : dashboard
+    Created on : Apr 30, 2020, 7:57:06 PM
     Author     : Shah Jr
 --%>
 
@@ -12,9 +12,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h2>Placeholder</h2>       
-        
-        <a href="login.jsp">Login</a>
-        <a href="register.jsp">Register</a>
+        <h1>Dashboard Placeholder</h1>
     </body>
 </html>
