@@ -47,7 +47,8 @@ public class LoginServlet extends HttpServlet {
             boolean auth = LoginService.validateUser(email,password);
             
             if(auth){
-//              HttpSession session = request.getSession();
+              HttpSession session = request.getSession();
+              session.setAttribute("email", email);
               response.sendRedirect("dashboard.jsp");
             }
             else{
