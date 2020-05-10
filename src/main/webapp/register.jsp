@@ -33,10 +33,6 @@
                                             <input type="text" id="inputEmail" class="form-control" placeholder="Last Name" name="lname">
                                             <label for="inputEmail">Last Name</label>
                                         </div>
-                                        <div class="form-label-group">
-                                            <input type="text" id="inputEmail" class="form-control" placeholder="Username" name="username">
-                                            <label for="inputEmail">Username</label>
-                                        </div>
 
                                         <div class="form-label-group">
                                             <input type="email" id="inputEmail" class="form-control" placeholder="Email address" name="email" >
@@ -47,6 +43,10 @@
                                             <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password">
                                             <label for="inputEmail">Password</label>
                                         </div>
+<!--                                        <div class="form-label-group">
+                                            <input type="text" id="inputEmail" class="form-control" placeholder="Confirm Password" name="password2">
+                                            <label for="inputEmail">Confirm Password</label>
+                                        </div>-->
 
                                         <div class="text-center custom-control custom-checkbox mb-3">
                                             <input type="checkbox" class="custom-control-input" id="customCheck1">

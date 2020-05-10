@@ -29,15 +29,12 @@ public class RegisterServlet extends HttpServlet {
         try {
             String fName = request.getParameter("fname");
             String lName = request.getParameter("lname");
-            String username = request.getParameter("username");
             String email = request.getParameter("email");
             String password = request.getParameter("password");
             
-            User user = new User();
-            
+            User user = new User();            
             user.setFname(fName);
             user.setLname(lName);            
-            user.setUsername(username);
             user.setEmail(email);
             user.setPassword(password);
             

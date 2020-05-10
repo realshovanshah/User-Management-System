@@ -17,7 +17,7 @@ import java.sql.PreparedStatement;
 public class JdbcRegisterService {
     
     private static String driver = "com.mysql.cj.jdbc.Driver";
-    private static String url = "jdbc:mysql://localhost:3306/user?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+    private static String url = "jdbc:mysql://localhost:3306/ums?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
     private static String username = "root";
     private static String password = "";
     
@@ -27,13 +27,12 @@ public class JdbcRegisterService {
             Class.forName(driver);
             Connection con = DriverManager.getConnection(url, username, password);
 
-            String sql="INSERT INTO USER (USERNAME, FNAME, LNAME, EMAIL, PASSWORD) VALUES (?,?,?,?,?);";
+            String sql="INSERT INTO USER (FNAME, LNAME, EMAIL, PASSWORD) VALUES (?,?,?,?);";
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setString(1, user.getUsername());
-            ps.setString(2, user.getFname());
-            ps.setString(3, user.getLname());
-            ps.setString(4, user.getEmail());
-            ps.setString(5, user.getPassword());
+            ps.setString(1, user.getFname());
+            ps.setString(2, user.getLname());
+            ps.setString(3, user.getEmail());
+            ps.setString(4, user.getPassword());
 
             ps.executeUpdate();
             return;
