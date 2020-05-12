@@ -17,10 +17,10 @@ public class User {
     private String email;
     private String password;
     private String gender;
-    private int age;
+    private String age;
     private String date_created;
-    private boolean is_admin;
-    private boolean is_blocked;
+    private int is_admin;
+    private int is_blocked;
 
     public String getGender() {
         return gender;
@@ -30,12 +30,20 @@ public class User {
         this.gender = gender;
     }
 
-    public int getAge() {
+    public String getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(String age) {
         this.age = age;
+    }
+
+    public int getIs_admin() {
+        return is_admin;
+    }
+
+    public void setIs_admin(int is_admin) {
+        this.is_admin = is_admin;
     }
 
     public String getDate_created() {
