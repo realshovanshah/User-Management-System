@@ -36,7 +36,7 @@
                       </div>
 
                       <div class="text-center  mb-3">
-                        <a href="#">Forgot Password?</a>
+                        <a href="forgot_password.jsp">Forgot Password?</a>
                       </div>
                       <button class="btn btn-lg btn-dark btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit">Login</button>
                       <div class="text-center">
