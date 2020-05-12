@@ -44,8 +44,8 @@
     //            String password = "";
 
                 try {
-                    Class.forName("com.mysql.jdbc.Driver").newInstance();
-                    Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/ums?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
+                    Class.forName("com.mysql.jdbc.Driver");
+                    Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/ums?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC","root","");
                     String sql = "Select * from user";
                     Statement stmt = conn.createStatement();
                     ResultSet rs = stmt.executeQuery(sql);
