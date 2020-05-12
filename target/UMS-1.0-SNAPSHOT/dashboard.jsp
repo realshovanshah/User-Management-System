@@ -72,6 +72,13 @@
       }, 300);
     });</script>
   <div>
+      <!--Logout Cache handling-->
+      <%
+          response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+          if(session.getAttribute("email")== null)
+            response.sendRedirect("login.jsp");
+          
+      %>
     <div class="sidebar">
       <div class="sidebar-inner">
         <div class="sidebar-logo">
