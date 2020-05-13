@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.datapirates.ums;
+package com.datapirates.ums.controller;
 
+import com.datapirates.ums.dao.UserDao;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -44,7 +44,7 @@ public class LoginServlet extends HttpServlet {
             String email = request.getParameter("email");
             String password = request.getParameter("password");
             
-            boolean auth = LoginService.validateUser(email,password);
+            boolean auth = UserDao.validateUser(email,password);
             
             if(auth){
               HttpSession session = request.getSession();

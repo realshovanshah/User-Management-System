@@ -1,4 +1,4 @@
-package com.datapirates.ums;
+package com.datapirates.ums.controller;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -6,8 +6,9 @@ package com.datapirates.ums;
  * and open the template in the editor.
  */
 
+import com.datapirates.ums.dao.UserDao;
+import com.datapirates.ums.model.User;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -45,7 +46,7 @@ public class AddUserServlet extends HttpServlet {
             user.setGender(gender);
             user.setIs_admin(is_admin);
             
-            AddUserService.addUser(user);
+            UserDao.addUser(user);
             
             response.sendRedirect("demoTable.jsp");
 

@@ -1,8 +1,7 @@
-com\datapirates\ums\RegisterServlet.class
-com\datapirates\ums\JdbcRegisterService.class
-com\datapirates\ums\LoginService.class
-com\datapirates\ums\LogoutServlet.class
-com\datapirates\ums\LoginServlet.class
-com\datapirates\ums\AddUserService.class
-com\datapirates\ums\User.class
-com\datapirates\ums\AddUserServlet.class
+com\datapirates\ums\controller\LoginServlet.class
+com\datapirates\ums\controller\LogoutServlet.class
+com\datapirates\ums\utils\DBConnection.class
+com\datapirates\ums\model\User.class
+com\datapirates\ums\controller\RegisterServlet.class
+com\datapirates\ums\dao\UserDao.class
+com\datapirates\ums\controller\AddUserServlet.class

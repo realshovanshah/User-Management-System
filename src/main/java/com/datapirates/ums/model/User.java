@@ -1,4 +1,4 @@
-package com.datapirates.ums;
+package com.datapirates.ums.model;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
