@@ -3,4 +3,6 @@ com\datapirates\ums\JdbcRegisterService.class
 com\datapirates\ums\LoginService.class
 com\datapirates\ums\LogoutServlet.class
 com\datapirates\ums\LoginServlet.class
+com\datapirates\ums\AddUserService.class
 com\datapirates\ums\User.class
+com\datapirates\ums\AddUserServlet.class
