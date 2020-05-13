@@ -25,7 +25,7 @@
                                     <h3 class="login-heading mb-4">Data Pirates | Forgot Password</h3>
                                     <form action="login" method="POST">                                                                      
                                         <div class="form-label-group">
-                                            <input type="email" id="inputEmail" class="form-control" placeholder="Enter your Email address" name="f_email">
+                                            <input type="email" id="inputEmail" class="form-control" placeholder="Enter your Email address" name="email">
                                             <label for="inputEmail">Enter your email</label>
                                         </div>
                                         <button class="btn btn-lg btn-dark btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit">Send Email</button>

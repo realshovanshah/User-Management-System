@@ -17,12 +17,13 @@ import java.sql.SQLException;
  * @author Shah Jr
  */
 public class UserDao {
-    public static void register(User user) throws Exception{
-        
-        try{
+
+    public static void register(User user) throws Exception {
+
+        try {
             Connection con = DBConnection.getConnection();
 
-            String sql="INSERT INTO USER (FNAME, LNAME, EMAIL, PASSWORD) VALUES (?,?,?,?);";
+            String sql = "INSERT INTO USER (FNAME, LNAME, EMAIL, PASSWORD) VALUES (?,?,?,?);";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, user.getFname());
             ps.setString(2, user.getLname());
@@ -31,40 +32,40 @@ public class UserDao {
 
             ps.executeUpdate();
             return;
-        }catch (ClassNotFoundException | SQLException e){
+        } catch (ClassNotFoundException | SQLException e) {
             throw e;
         }
-        
+
     }
-    
-    public static boolean validateUser(String email, String password){
-        try{
+
+    public static boolean validateUser(String email, String password) {
+        try {
             Connection con = DBConnection.getConnection();
-            
-            String sql = "SELECT * FROM USER WHERE EMAIL=? AND PASSWORD=?;"; 
+
+            String sql = "SELECT * FROM USER WHERE EMAIL=? AND PASSWORD=?;";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, email);
             ps.setString(2, password);
             ResultSet rs = ps.executeQuery();
-            
-            if(rs.next()){
+
+            if (rs.next()) {
                 return true;
             }
-            
-        }catch(ClassNotFoundException | SQLException e){
+
+        } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         };
-        
+
         return false;
-       
+
     }
-    
-    public static void addUser(User user) throws Exception{
-        
-        try{
+
+    public static void addUser(User user) throws Exception {
+
+        try {
             Connection con = DBConnection.getConnection();
 
-            String sql="INSERT INTO USER (FNAME, LNAME, EMAIL, PASSWORD, AGE, GENDER, IS_ADMIN) VALUES (?,?,?,?,?,?,?);";
+            String sql = "INSERT INTO USER (FNAME, LNAME, EMAIL, PASSWORD, AGE, GENDER, IS_ADMIN) VALUES (?,?,?,?,?,?,?);";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, user.getFname());
             ps.setString(2, user.getLname());
@@ -76,9 +77,33 @@ public class UserDao {
 
             ps.executeUpdate();
             return;
-        }catch (ClassNotFoundException | SQLException e){
+        } catch (ClassNotFoundException | SQLException e) {
             throw e;
         }
-        
+
+    }
+
+    public int forgotPassword(User user) throws Exception {
+        int result = 0;
+
+        try {
+            String sql = "UPDATE user SET pass=? WHERE email=?;";
+            Connection con = DBConnection.getConnection();
+
+            PreparedStatement psmt = con.prepareStatement(sql);
+            psmt.setString(1, "data");
+            psmt.setString(2, user.getEmail());
+
+            int pss = psmt.executeUpdate();
+            con.close();
+            psmt.close();
+
+            return pss;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return result;
     }
 }

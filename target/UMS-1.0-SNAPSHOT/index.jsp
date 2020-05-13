@@ -4,19 +4,6 @@
     Author     : Shah Jr
 --%>
 
-<!--<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h2>Placeholder</h2>       
-        
-        <a href="login.jsp">Login</a>
-        <a href="register.jsp">Register</a>
-    </body>
-</html>-->
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!doctype html>
@@ -313,11 +300,11 @@
               <div class="row form-group">
                 <div class="col-md-6 mb-3 mb-md-0">
                   <label class="text-black" for="fname">First Name</label>
-                  <input type="text" id="fname" class="form-control">
+                  <input type="text" id="fname" class="form-control" name="first_name">
                 </div>
                 <div class="col-md-6">
-                  <label class="text-black" for="lname">Last Name</label>
-                  <input type="text" id="lname" class="form-control">
+                  <label class="text-black" for="lname" >Last Name</label>
+                  <input type="text" id="lname" class="form-control" name="last_name">
                 </div>
               </div>
 
@@ -325,7 +312,7 @@
                 
                 <div class="col-md-12">
                   <label class="text-black" for="email">Email Address</label> 
-                  <input type="email" id="email" class="form-control">
+                  <input type="email" id="email" class="form-control" name="email_address">
                 </div>
               </div>
 
@@ -333,14 +320,14 @@
                 
                 <div class="col-md-12">
                   <label class="text-black" for="subject">Subject</label> 
-                  <input type="subject" id="subject" class="form-control">
+                  <input type="subject" id="subject" class="form-control" name="subject">
                 </div>
               </div>
 
               <div class="row form-group">
                 <div class="col-md-12">
                   <label class="text-black" for="message">Message</label> 
-                  <textarea name="message" id="message" cols="30" rows="7" class="form-control" placeholder="Write your notes or questions here..."></textarea>
+                  <textarea name="message" id="message" cols="30" rows="7" class="form-control" placeholder="Write your notes or questions here..." name="message"></textarea>
                 </div>
               </div>
 
