@@ -1,323 +1,966 @@
 <!doctype html>
-<html>
-
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
-  <title>Dashboard</title>
-  <style>
-    #loader {
-      transition: all .3s ease-in-out;
-      opacity: 1;
-      visibility: visible;
-      position: fixed;
-      height: 100vh;
-      width: 100%;
-      background: #fff;
-      z-index: 90000
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Data Pirates - User Management System</title>
+    <meta name="description" content="Ela Admin - HTML5 Admin Template">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="apple-touch-icon" href="https://i.imgur.com/QRAUqs9.png">
+    <link rel="shortcut icon" href="https://i.imgur.com/QRAUqs9.png">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.0/normalize.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/css/flag-icon.min.css">
+    <link rel="stylesheet" href="assets/css/cs-skin-elastic.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
+    <link href="https://cdn.jsdelivr.net/npm/chartist@0.11.0/dist/chartist.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/jqvmap@1.5.1/dist/jqvmap.min.css" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/weathericons@2.1.0/css/weather-icons.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.css" rel="stylesheet" />
+
+   <style>
+    #weatherWidget .currentDesc {
+        color: #ffffff!important;
     }
+        .traffic-chart {
+            min-height: 335px;
+        }
+        #flotPie1  {
+            height: 150px;
+        }
+        #flotPie1 td {
+            padding:3px;
+        }
+        #flotPie1 table {
+            top: 20px!important;
+            right: -10px!important;
+        }
+        .chart-container {
+            display: table;
+            min-width: 270px ;
+            text-align: left;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+        #flotLine5  {
+             height: 105px;
+        }
 
-    #loader.fadeOut {
-      opacity: 0;
-      visibility: hidden
-    }
+        #flotBarChart {
+            height: 150px;
+        }
+        #cellPaiChart{
+            height: 160px;
+        }
 
-    .spinner {
-      width: 40px;
-      height: 40px;
-      position: absolute;
-      top: calc(50% - 20px);
-      left: calc(50% - 20px);
-      background-color: #333;
-      border-radius: 100%;
-      -webkit-animation: sk-scaleout 1s infinite ease-in-out;
-      animation: sk-scaleout 1s infinite ease-in-out
-    }
-
-    @-webkit-keyframes sk-scaleout {
-      0% {
-        -webkit-transform: scale(0)
-      }
-
-      100% {
-        -webkit-transform: scale(1);
-        opacity: 0
-      }
-    }
-
-    @keyframes sk-scaleout {
-      0% {
-        -webkit-transform: scale(0);
-        transform: scale(0)
-      }
-
-      100% {
-        -webkit-transform: scale(1);
-        transform: scale(1);
-        opacity: 0
-      }
-    }
-  </style>
-  <link href="style.css" rel="stylesheet">
+    </style>
 </head>
 
-<body class="app">
-  <div id="loader">
-    <div class="spinner"></div>
-  </div>
-  <script>window.addEventListener('load', () => {
-      const loader = document.getElementById('loader');
-      setTimeout(() => {
-        loader.classList.add('fadeOut');
-      }, 300);
-    });</script>
-  <div>
-      <!--Logout Cache handling-->
-      <%
-          response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
-          if(session.getAttribute("email")== null)
-            response.sendRedirect("login.jsp");
-          
-      %>
-    <div class="sidebar">
-      <div class="sidebar-inner">
-        <div class="sidebar-logo">
-          <div class="peers ai-c fxw-nw">
-            <div class="peer peer-greed"><a class="sidebar-link td-n" href="index.html">
-                <div class="peers ai-c fxw-nw">
-                  <div class="peer">
-                    <div class="logo"><img src="assets/static/images/logo.png" alt=""></div>
-                  </div>
-                  <div class="peer peer-greed">
-                    <h5 class="lh-1 mB-0 logo-text">Data Pirates</h5>
-                  </div>
-                </div>
-              </a></div>
-            <div class="peer">
-              <div class="mobile-toggle sidebar-toggle"><a href="" class="td-n"><i class="ti-arrow-circle-left"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <ul class="sidebar-menu scrollable pos-r">
-          <li class="nav-item mT-30 active"><a class="sidebar-link" href="index.html"><span class="icon-holder"><i
-                  class="c-blue-500 ti-home"></i> </span><span class="title">Dashboard</span></a></li>
-          <li class="nav-item"><a class="sidebar-link" href="calendar.html"><span class="icon-holder"><i
-                  class="c-deep-orange-500 ti-calendar"></i> </span><span class="title">Calendar</span></a></li>
-          <li class="nav-item"><a class="sidebar-link" href="chat.html"><span class="icon-holder"><i
-                  class="c-deep-purple-500 ti-comment-alt"></i> </span><span class="title">Chat</span></a></li>
-          <li class="nav-item"><a class="sidebar-link" href="charts.html"><span class="icon-holder"><i
-                  class="c-indigo-500 ti-bar-chart"></i> </span><span class="title">Charts</span></a></li>
-          <li class="nav-item dropdown"><a class="dropdown-toggle" href="javascript:void(0);"><span
-                class="icon-holder"><i class="c-orange-500 ti-layout-list-thumb"></i> </span><span
-                class="title">Tables</span> <span class="arrow"><i class="ti-angle-right"></i></span></a>
-            <ul class="dropdown-menu">
-              <li><a class="sidebar-link" href="basic-table.html">Basic Table</a></li>
-              <li><a class="sidebar-link" href="datatable.html">Data Table</a></li>
-            </ul>
-          </li>
-          
-        </ul>
-      </div>
-    </div>
-    <div class="page-container">
-      <div class="header navbar">
-        <div class="header-container">
-          <ul class="nav-left">
-            <li><a id="sidebar-toggle" class="sidebar-toggle" href="javascript:void(0);"><i class="ti-menu"></i></a>
-            </li>
-            <li class="search-box"><a class="search-toggle no-pdd-right" href="javascript:void(0);"><i
-                  class="search-icon ti-search pdd-right-10"></i> <i
-                  class="search-icon-close ti-close pdd-right-10"></i></a></li>
-            <li class="search-input"><input class="form-control" type="text" placeholder="Search..."></li>
-          </ul>
-          <ul class="nav-right">
-            
-            <li class="dropdown"><a href="" class="dropdown-toggle no-after peers fxw-nw ai-c lh-1"
-                data-toggle="dropdown">
-                <div class="peer mR-10"><img class="w-2r bdrs-50p" src="https://randomuser.me/api/portraits/men/10.jpg"
-                    alt=""></div>
-                <div class="peer"><span class="fsz-sm c-grey-900">Admin</span></div>
-              </a>
-              <ul class="dropdown-menu fsz-sm">
-                <li><a href="" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700"><i class="ti-settings mR-10"></i>
-                    <span>Setting</span></a></li>
-                <li><a href="" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700"><i class="ti-user mR-10"></i>
-                    <span>Profile</span></a></li>
-                <li><a href="email.html" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700"><i class="ti-email mR-10"></i>
-                    <span>Messages</span></a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="logout" role="button" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700"><i class="ti-power-off mR-10"></i>
-                    <span>Logout</span></a></li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <main class="main-content bgc-grey-100">
-        <div id="mainContent">
-          <div class="row gap-20 masonry pos-r">
-            <div class="masonry-sizer col-md-6"></div>
-            <div class="masonry-item w-100">
-              <div class="row gap-20">
-                <div class="col-md-3">
-                  <div class="layers bd bgc-white p-20">
-                    <div class="layer w-100 mB-10">
-                      <h6 class="lh-1">Total Visits</h6>
-                    </div>
-                    <div class="layer w-100">
-                      <div class="peers ai-sb fxw-nw">
-                        <div class="peer peer-greed"><span id="sparklinedash"></span></div>
-                        <div class="peer"><span
-                            class="d-ib lh-0 va-m fw-600 bdrs-10em pX-15 pY-15 bgc-green-50 c-green-500">+10%</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-3">
-                  <div class="layers bd bgc-white p-20">
-                    <div class="layer w-100 mB-10">
-                      <h6 class="lh-1">Total Page Views</h6>
-                    </div>
-                    <div class="layer w-100">
-                      <div class="peers ai-sb fxw-nw">
-                        <div class="peer peer-greed"><span id="sparklinedash2"></span></div>
-                        <div class="peer"><span
-                            class="d-ib lh-0 va-m fw-600 bdrs-10em pX-15 pY-15 bgc-red-50 c-red-500">-7%</span></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-3">
-                  <div class="layers bd bgc-white p-20">
-                    <div class="layer w-100 mB-10">
-                      <h6 class="lh-1">Unique Visitor</h6>
-                    </div>
-                    <div class="layer w-100">
-                      <div class="peers ai-sb fxw-nw">
-                        <div class="peer peer-greed"><span id="sparklinedash3"></span></div>
-                        <div class="peer"><span
-                            class="d-ib lh-0 va-m fw-600 bdrs-10em pX-15 pY-15 bgc-purple-50 c-purple-500">~12%</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-3">
-                  <div class="layers bd bgc-white p-20">
-                    <div class="layer w-100 mB-10">
-                      <h6 class="lh-1">Bounce Rate</h6>
-                    </div>
-                    <div class="layer w-100">
-                      <div class="peers ai-sb fxw-nw">
-                        <div class="peer peer-greed"><span id="sparklinedash4"></span></div>
-                        <div class="peer"><span
-                            class="d-ib lh-0 va-m fw-600 bdrs-10em pX-15 pY-15 bgc-blue-50 c-blue-500">33%</span></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="masonry-item col-md-6">
-              <div class="bd bgc-white p-20">
-                <div class="layers">
-                  <div class="layer w-100 mB-20">
-                    <h6 class="lh-1">Weather</h6>
-                  </div>
-                  <div class="layer w-100">
-                    <div class="peers ai-c jc-sb fxw-nw">
-                      <div class="peer peer-greed">
-                        <div class="layers">
-                          <div class="layer w-100">
-                            <div class="peers fxw-nw ai-c">
-                              <div class="peer mR-20">
-                                <h3>32<sup>°F</sup></h3>
-                              </div>
-                              <div class="peer"><canvas class="sleet" width="44" height="44"></canvas></div>
-                            </div>
-                          </div>
-                          <div class="layer w-100"><span class="fw-600 c-grey-600">Partly Clouds</span></div>
-                        </div>
-                      </div>
-                      <div class="peer">
-                        <div class="layers ai-fe">
-                          <div class="layer">
-                            <h5 class="mB-5">Monday</h5>
-                          </div>
-                          <div class="layer"><span class="fw-600 c-grey-600">Nov, 01 2017</span></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="layer w-100 mY-30">
-                    <div class="layers bdB">
-                      <div class="layer w-100 bdT pY-5">
-                        <div class="peers ai-c jc-sb fxw-nw">
-                          <div class="peer"><span>Wind</span></div>
-                          <div class="peer ta-r"><span class="fw-600 c-grey-800">10km/h</span></div>
-                        </div>
-                      </div>
-                      <div class="layer w-100 bdT pY-5">
-                        <div class="peers ai-c jc-sb fxw-nw">
-                          <div class="peer"><span>Sunrise</span></div>
-                          <div class="peer ta-r"><span class="fw-600 c-grey-800">05:00 AM</span></div>
-                        </div>
-                      </div>
-                      <div class="layer w-100 bdT pY-5">
-                        <div class="peers ai-c jc-sb fxw-nw">
-                          <div class="peer"><span>Pressure</span></div>
-                          <div class="peer ta-r"><span class="fw-600 c-grey-800">1B</span></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="layer w-100">
-                    <div class="peers peers-greed ai-fs ta-c">
-                      <div class="peer">
-                        <h6 class="mB-10">MON</h6><canvas class="sleet" width="30" height="30"></canvas><span
-                          class="d-b fw-600">32<sup>°F</sup></span>
-                      </div>
-                      <div class="peer">
-                        <h6 class="mB-10">TUE</h6><canvas class="clear-day" width="30" height="30"></canvas><span
-                          class="d-b fw-600">30<sup>°F</sup></span>
-                      </div>
-                      <div class="peer">
-                        <h6 class="mB-10">WED</h6><canvas class="partly-cloudy-day" width="30"
-                          height="30"></canvas><span class="d-b fw-600">28<sup>°F</sup></span>
-                      </div>
-                      <div class="peer">
-                        <h6 class="mB-10">THR</h6><canvas class="cloudy" width="30" height="30"></canvas><span
-                          class="d-b fw-600">32<sup>°F</sup></span>
-                      </div>
-                      <div class="peer">
-                        <h6 class="mB-10">FRI</h6><canvas class="snow" width="30" height="30"></canvas><span
-                          class="d-b fw-600">24<sup>°F</sup></span>
-                      </div>
-                      <div class="peer">
-                        <h6 class="mB-10">SAT</h6><canvas class="wind" width="30" height="30"></canvas><span
-                          class="d-b fw-600">28<sup>°F</sup></span>
-                      </div>
-                      <div class="peer">
-                        <h6 class="mB-10">SUN</h6><canvas class="sleet" width="30" height="30"></canvas><span
-                          class="d-b fw-600">32<sup>°F</sup></span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </main>
-      <footer class="bdT ta-c p-30 lh-0 fsz-sm c-grey-600"><span>Copyright © 2020 Designed by <a
-            href="" target="_blank" title="ums">Data Pirates</a>. All rights reserved.</span>
-      </footer>
-    </div>
-  </div>
-  <script type="text/javascript" src="vendor.js"></script>
-  <script type="text/javascript" src="bundle.js"></script>
-</body>
+<body>
+    <!-- Left Panel -->
+    <aside id="left-panel" class="left-panel">
+        <nav class="navbar navbar-expand-sm navbar-default">
+            <div id="main-menu" class="main-menu collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active">
+                        <a href="index.html"><i class="menu-icon fa fa-laptop"></i>Dashboard </a>
+                    </li>
+                    <li class="menu-title">UI elements</li><!-- /.menu-title -->
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i>Components</a>
+                        <ul class="sub-menu children dropdown-menu">                            <li><i class="fa fa-puzzle-piece"></i><a href="ui-buttons.html">Buttons</a></li>
+                            <li><i class="fa fa-id-badge"></i><a href="ui-badges.html">Badges</a></li>
+                            <li><i class="fa fa-bars"></i><a href="ui-tabs.html">Tabs</a></li>
 
+                            <li><i class="fa fa-id-card-o"></i><a href="ui-cards.html">Cards</a></li>
+                            <li><i class="fa fa-exclamation-triangle"></i><a href="ui-alerts.html">Alerts</a></li>
+                            <li><i class="fa fa-spinner"></i><a href="ui-progressbar.html">Progress Bars</a></li>
+                            <li><i class="fa fa-fire"></i><a href="ui-modals.html">Modals</a></li>
+                            <li><i class="fa fa-book"></i><a href="ui-switches.html">Switches</a></li>
+                            <li><i class="fa fa-th"></i><a href="ui-grids.html">Grids</a></li>
+                            <li><i class="fa fa-file-word-o"></i><a href="ui-typgraphy.html">Typography</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>Tables</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="fa fa-table"></i><a href="tables-basic.html">Basic Table</a></li>
+                            <li><i class="fa fa-table"></i><a href="tables-data.html">Data Table</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-th"></i>Forms</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="menu-icon fa fa-th"></i><a href="forms-basic.html">Basic Form</a></li>
+                            <li><i class="menu-icon fa fa-th"></i><a href="forms-advanced.html">Advanced Form</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="menu-title">Icons</li><!-- /.menu-title -->
+
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Icons</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="menu-icon fa fa-fort-awesome"></i><a href="#">Font Awesome</a></li>
+                            <li><i class="menu-icon ti-themify-logo"></i><a href="#">Themefy Icons</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"> <i class="menu-icon ti-email"></i>Widgets </a>
+                    </li>
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-bar-chart"></i>Charts</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="menu-icon fa fa-line-chart"></i><a href="charts-chartjs.html">Chart JS</a></li>
+                            <li><i class="menu-icon fa fa-area-chart"></i><a href="charts-flot.html">Flot Chart</a></li>
+                            <li><i class="menu-icon fa fa-pie-chart"></i><a href="charts-peity.html">Peity Chart</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-area-chart"></i>Maps</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="menu-icon fa fa-map-o"></i><a href="maps-gmap.html">Google Maps</a></li>
+                            <li><i class="menu-icon fa fa-street-view"></i><a href="maps-vector.html">Vector Maps</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-title">Extras</li><!-- /.menu-title -->
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-glass"></i>Pages</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="menu-icon fa fa-sign-in"></i><a href="page-login.html">Login</a></li>
+                            <li><i class="menu-icon fa fa-sign-in"></i><a href="page-register.html">Register</a></li>
+                            <li><i class="menu-icon fa fa-paper-plane"></i><a href="pages-forget.html">Forget Pass</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </nav>
+    </aside>
+    <!-- /#left-panel -->
+    <!-- Right Panel -->
+    <div id="right-panel" class="right-panel">
+        <!-- Header-->
+        <header id="header" class="header">
+            <div class="top-left">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="./"><img src="images/logo.png" alt="Logo"></a>
+                    <a class="navbar-brand hidden" href="./"><img src="images/logo2.png" alt="Logo"></a>
+                    <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
+                </div>
+            </div>
+            <div class="top-right">
+                <div class="header-menu">
+                    <div class="header-left">
+                        <button class="search-trigger"><i class="fa fa-search"></i></button>
+                        <div class="form-inline">
+                            <form class="search-form">
+                                <input class="form-control mr-sm-2" type="text" placeholder="Search ..." aria-label="Search">
+                                <button class="search-close" type="submit"><i class="fa fa-close"></i></button>
+                            </form>
+                        </div>
+
+                        <div class="dropdown for-notification">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="notification" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-bell"></i>
+                                <span class="count bg-danger">3</span>
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="notification">
+                                <p class="red">You have 3 Notification</p>
+                                <a class="dropdown-item media" href="#">
+                                    <i class="fa fa-check"></i>
+                                    <p>Server #1 overloaded.</p>
+                                </a>
+                                <a class="dropdown-item media" href="#">
+                                    <i class="fa fa-info"></i>
+                                    <p>Server #2 overloaded.</p>
+                                </a>
+                                <a class="dropdown-item media" href="#">
+                                    <i class="fa fa-warning"></i>
+                                    <p>Server #3 overloaded.</p>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="dropdown for-message">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="message" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-envelope"></i>
+                                <span class="count bg-primary">4</span>
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="message">
+                                <p class="red">You have 4 Mails</p>
+                                <a class="dropdown-item media" href="#">
+                                    <span class="photo media-left"><img alt="avatar" src="images/avatar/1.jpg"></span>
+                                    <div class="message media-body">
+                                        <span class="name float-left">Jonathan Smith</span>
+                                        <span class="time float-right">Just now</span>
+                                        <p>Hello, this is an example msg</p>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item media" href="#">
+                                    <span class="photo media-left"><img alt="avatar" src="images/avatar/2.jpg"></span>
+                                    <div class="message media-body">
+                                        <span class="name float-left">Jack Sanders</span>
+                                        <span class="time float-right">5 minutes ago</span>
+                                        <p>Lorem ipsum dolor sit amet, consectetur</p>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item media" href="#">
+                                    <span class="photo media-left"><img alt="avatar" src="images/avatar/3.jpg"></span>
+                                    <div class="message media-body">
+                                        <span class="name float-left">Cheryl Wheeler</span>
+                                        <span class="time float-right">10 minutes ago</span>
+                                        <p>Hello, this is an example msg</p>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item media" href="#">
+                                    <span class="photo media-left"><img alt="avatar" src="images/avatar/4.jpg"></span>
+                                    <div class="message media-body">
+                                        <span class="name float-left">Rachel Santos</span>
+                                        <span class="time float-right">15 minutes ago</span>
+                                        <p>Lorem ipsum dolor sit amet, consectetur</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="user-area dropdown float-right">
+                        <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img class="user-avatar rounded-circle" src="images/admin.jpg" alt="User Avatar">
+                        </a>
+
+                        <div class="user-menu dropdown-menu">
+                            <a class="nav-link" href="#"><i class="fa fa- user"></i>My Profile</a>
+
+                            <a class="nav-link" href="#"><i class="fa fa- user"></i>Notifications <span class="count">13</span></a>
+
+                            <a class="nav-link" href="#"><i class="fa fa -cog"></i>Settings</a>
+
+                            <a class="nav-link" href="#"><i class="fa fa-power -off"></i>Logout</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </header>
+        <!-- /#header -->
+        <!-- Content -->
+        <div class="content">
+            <!-- Animated -->
+            <div class="animated fadeIn">
+                <!-- Widgets  -->
+                <div class="row">
+                    <div class="col-lg-3 col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="stat-widget-five">
+                                    <div class="stat-icon dib flat-color-1">
+                                        <i class="pe-7s-cash"></i>
+                                    </div>
+                                    <div class="stat-content">
+                                        <div class="text-left dib">
+                                            <div class="stat-text">$<span class="count">23569</span></div>
+                                            <div class="stat-heading">Revenue</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="stat-widget-five">
+                                    <div class="stat-icon dib flat-color-2">
+                                        <i class="pe-7s-cart"></i>
+                                    </div>
+                                    <div class="stat-content">
+                                        <div class="text-left dib">
+                                            <div class="stat-text"><span class="count">3435</span></div>
+                                            <div class="stat-heading">Sales</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="stat-widget-five">
+                                    <div class="stat-icon dib flat-color-3">
+                                        <i class="pe-7s-browser"></i>
+                                    </div>
+                                    <div class="stat-content">
+                                        <div class="text-left dib">
+                                            <div class="stat-text"><span class="count">349</span></div>
+                                            <div class="stat-heading">Templates</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="stat-widget-five">
+                                    <div class="stat-icon dib flat-color-4">
+                                        <i class="pe-7s-users"></i>
+                                    </div>
+                                    <div class="stat-content">
+                                        <div class="text-left dib">
+                                            <div class="stat-text"><span class="count">2986</span></div>
+                                            <div class="stat-heading">Clients</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /Widgets -->
+                <!--  Traffic  -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="box-title">Traffic </h4>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-8">
+                                    <div class="card-body">
+                                        <!-- <canvas id="TrafficChart"></canvas>   -->
+                                        <div id="traffic-chart" class="traffic-chart"></div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="card-body">
+                                        <div class="progress-box progress-1">
+                                            <h4 class="por-title">Visits</h4>
+                                            <div class="por-txt">96,930 Users (40%)</div>
+                                            <div class="progress mb-2" style="height: 5px;">
+                                                <div class="progress-bar bg-flat-color-1" role="progressbar" style="width: 40%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+                                        <div class="progress-box progress-2">
+                                            <h4 class="por-title">Bounce Rate</h4>
+                                            <div class="por-txt">3,220 Users (24%)</div>
+                                            <div class="progress mb-2" style="height: 5px;">
+                                                <div class="progress-bar bg-flat-color-2" role="progressbar" style="width: 24%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+                                        <div class="progress-box progress-2">
+                                            <h4 class="por-title">Unique Visitors</h4>
+                                            <div class="por-txt">29,658 Users (60%)</div>
+                                            <div class="progress mb-2" style="height: 5px;">
+                                                <div class="progress-bar bg-flat-color-3" role="progressbar" style="width: 60%;" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+                                        <div class="progress-box progress-2">
+                                            <h4 class="por-title">Targeted  Visitors</h4>
+                                            <div class="por-txt">99,658 Users (90%)</div>
+                                            <div class="progress mb-2" style="height: 5px;">
+                                                <div class="progress-bar bg-flat-color-4" role="progressbar" style="width: 90%;" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+                                    </div> <!-- /.card-body -->
+                                </div>
+                            </div> <!-- /.row -->
+                            <div class="card-body"></div>
+                        </div>
+                    </div><!-- /# column -->
+                </div>
+                <!--  /Traffic -->
+                <div class="clearfix"></div>
+                <!-- Orders -->
+                <div class="orders">
+                    <div class="row">
+                        <div class="col-xl-8">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="box-title">Orders </h4>
+                                </div>
+                                <div class="card-body--">
+                                    <div class="table-stats order-table ov-h">
+                                        <table class="table ">
+                                            <thead>
+                                                <tr>
+                                                    <th class="serial">#</th>
+                                                    <th class="avatar">Avatar</th>
+                                                    <th>ID</th>
+                                                    <th>Name</th>
+                                                    <th>Product</th>
+                                                    <th>Quantity</th>
+                                                    <th>Status</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="serial">1.</td>
+                                                    <td class="avatar">
+                                                        <div class="round-img">
+                                                            <a href="#"><img class="rounded-circle" src="images/avatar/1.jpg" alt=""></a>
+                                                        </div>
+                                                    </td>
+                                                    <td> #5469 </td>
+                                                    <td>  <span class="name">Louis Stanley</span> </td>
+                                                    <td> <span class="product">iMax</span> </td>
+                                                    <td><span class="count">231</span></td>
+                                                    <td>
+                                                        <span class="badge badge-complete">Complete</span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="serial">2.</td>
+                                                    <td class="avatar">
+                                                        <div class="round-img">
+                                                            <a href="#"><img class="rounded-circle" src="images/avatar/2.jpg" alt=""></a>
+                                                        </div>
+                                                    </td>
+                                                    <td> #5468 </td>
+                                                    <td>  <span class="name">Gregory Dixon</span> </td>
+                                                    <td> <span class="product">iPad</span> </td>
+                                                    <td><span class="count">250</span></td>
+                                                    <td>
+                                                        <span class="badge badge-complete">Complete</span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="serial">3.</td>
+                                                    <td class="avatar">
+                                                        <div class="round-img">
+                                                            <a href="#"><img class="rounded-circle" src="images/avatar/3.jpg" alt=""></a>
+                                                        </div>
+                                                    </td>
+                                                    <td> #5467 </td>
+                                                    <td>  <span class="name">Catherine Dixon</span> </td>
+                                                    <td> <span class="product">SSD</span> </td>
+                                                    <td><span class="count">250</span></td>
+                                                    <td>
+                                                        <span class="badge badge-complete">Complete</span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="serial">4.</td>
+                                                    <td class="avatar">
+                                                        <div class="round-img">
+                                                            <a href="#"><img class="rounded-circle" src="images/avatar/4.jpg" alt=""></a>
+                                                        </div>
+                                                    </td>
+                                                    <td> #5466 </td>
+                                                    <td>  <span class="name">Mary Silva</span> </td>
+                                                    <td> <span class="product">Magic Mouse</span> </td>
+                                                    <td><span class="count">250</span></td>
+                                                    <td>
+                                                        <span class="badge badge-pending">Pending</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class=" pb-0">
+                                                    <td class="serial">5.</td>
+                                                    <td class="avatar pb-0">
+                                                        <div class="round-img">
+                                                            <a href="#"><img class="rounded-circle" src="images/avatar/6.jpg" alt=""></a>
+                                                        </div>
+                                                    </td>
+                                                    <td> #5465 </td>
+                                                    <td>  <span class="name">Johnny Stephens</span> </td>
+                                                    <td> <span class="product">Monitor</span> </td>
+                                                    <td><span class="count">250</span></td>
+                                                    <td>
+                                                        <span class="badge badge-complete">Complete</span>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div> <!-- /.table-stats -->
+                                </div>
+                            </div> <!-- /.card -->
+                        </div>  <!-- /.col-lg-8 -->
+
+                        <div class="col-xl-4">
+                            <div class="row">
+                                <div class="col-lg-6 col-xl-12">
+                                    <div class="card br-0">
+                                        <div class="card-body">
+                                            <div class="chart-container ov-h">
+                                                <div id="flotPie1" class="float-chart"></div>
+                                            </div>
+                                        </div>
+                                    </div><!-- /.card -->
+                                </div>
+
+                                <div class="col-lg-6 col-xl-12">
+                                    <div class="card bg-flat-color-3  ">
+                                        <div class="card-body">
+                                            <h4 class="card-title m-0  white-color ">August 2018</h4>
+                                        </div>
+                                         <div class="card-body">
+                                             <div id="flotLine5" class="flot-line"></div>
+                                         </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> <!-- /.col-md-4 -->
+                    </div>
+                </div>
+                <!-- /.orders -->
+                <!-- To Do and Live Chat -->
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title box-title">To Do List</h4>
+                                <div class="card-content">
+                                    <div class="todo-list">
+                                        <div class="tdl-holder">
+                                            <div class="tdl-content">
+                                                <ul>
+                                                    <li>
+                                                        <label>
+                                                            <input type="checkbox"><i class="check-box"></i><span>Conveniently fabricate interactive technology for ....</span>
+                                                            <a href='#' class="fa fa-times"></a>
+                                                            <a href='#' class="fa fa-pencil"></a>
+                                                            <a href='#' class="fa fa-check"></a>
+                                                        </label>
+                                                    </li>
+                                                    <li>
+                                                        <label>
+                                                            <input type="checkbox"><i class="check-box"></i><span>Creating component page</span>
+                                                            <a href='#' class="fa fa-times"></a>
+                                                            <a href='#' class="fa fa-pencil"></a>
+                                                            <a href='#' class="fa fa-check"></a>
+                                                        </label>
+                                                    </li>
+                                                    <li>
+                                                        <label>
+                                                            <input type="checkbox" checked><i class="check-box"></i><span>Follow back those who follow you</span>
+                                                            <a href='#' class="fa fa-times"></a>
+                                                            <a href='#' class="fa fa-pencil"></a>
+                                                            <a href='#' class="fa fa-check"></a>
+                                                        </label>
+                                                    </li>
+                                                    <li>
+                                                        <label>
+                                                            <input type="checkbox" checked><i class="check-box"></i><span>Design One page theme</span>
+                                                            <a href='#' class="fa fa-times"></a>
+                                                            <a href='#' class="fa fa-pencil"></a>
+                                                            <a href='#' class="fa fa-check"></a>
+                                                        </label>
+                                                    </li>
+
+                                                    <li>
+                                                        <label>
+                                                            <input type="checkbox" checked><i class="check-box"></i><span>Creating component page</span>
+                                                            <a href='#' class="fa fa-times"></a>
+                                                            <a href='#' class="fa fa-pencil"></a>
+                                                            <a href='#' class="fa fa-check"></a>
+                                                        </label>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div> <!-- /.todo-list -->
+                                </div>
+                            </div> <!-- /.card-body -->
+                        </div><!-- /.card -->
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title box-title">Live Chat</h4>
+                                <div class="card-content">
+                                    <div class="messenger-box">
+                                        <ul>
+                                            <li>
+                                                <div class="msg-received msg-container">
+                                                    <div class="avatar">
+                                                       <img src="images/avatar/64-1.jpg" alt="">
+                                                       <div class="send-time">11.11 am</div>
+                                                    </div>
+                                                    <div class="msg-box">
+                                                        <div class="inner-box">
+                                                            <div class="name">
+                                                                John Doe
+                                                            </div>
+                                                            <div class="meg">
+                                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis sunt placeat velit ad reiciendis ipsam
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div><!-- /.msg-received -->
+                                            </li>
+                                            <li>
+                                                <div class="msg-sent msg-container">
+                                                    <div class="avatar">
+                                                       <img src="images/avatar/64-2.jpg" alt="">
+                                                       <div class="send-time">11.11 am</div>
+                                                    </div>
+                                                    <div class="msg-box">
+                                                        <div class="inner-box">
+                                                            <div class="name">
+                                                                John Doe
+                                                            </div>
+                                                            <div class="meg">
+                                                                Hay how are you doing?
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div><!-- /.msg-sent -->
+                                            </li>
+                                        </ul>
+                                        <div class="send-mgs">
+                                            <div class="yourmsg">
+                                                <input class="form-control" type="text">
+                                            </div>
+                                            <button class="btn msg-send-btn">
+                                                <i class="pe-7s-paper-plane"></i>
+                                            </button>
+                                        </div>
+                                    </div><!-- /.messenger-box -->
+                                </div>
+                            </div> <!-- /.card-body -->
+                        </div><!-- /.card -->
+                    </div>
+                </div>
+                <!-- /To Do and Live Chat -->
+                <!-- Calender Chart Weather  -->
+                <div class="row">
+                    <div class="col-md-12 col-lg-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <!-- <h4 class="box-title">Chandler</h4> -->
+                                <div class="calender-cont widget-calender">
+                                    <div id="calendar"></div>
+                                </div>
+                            </div>
+                        </div><!-- /.card -->
+                    </div>
+
+                    <div class="col-lg-4 col-md-6">
+                        <div class="card ov-h">
+                            <div class="card-body bg-flat-color-2">
+                                <div id="flotBarChart" class="float-chart ml-4 mr-4"></div>
+                            </div>
+                            <div id="cellPaiChart" class="float-chart"></div>
+                        </div><!-- /.card -->
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="card weather-box">
+                            <h4 class="weather-title box-title">Weather</h4>
+                            <div class="card-body">
+                                <div class="weather-widget">
+                                    <div id="weather-one" class="weather-one"></div>
+                                </div>
+                            </div>
+                        </div><!-- /.card -->
+                    </div>
+                </div>
+                <!-- /Calender Chart Weather -->
+                <!-- Modal - Calendar - Add New Event -->
+                <div class="modal fade none-border" id="event-modal">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title"><strong>Add New Event</strong></h4>
+                            </div>
+                            <div class="modal-body"></div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-success save-event waves-effect waves-light">Create event</button>
+                                <button type="button" class="btn btn-danger delete-event waves-effect waves-light" data-dismiss="modal">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /#event-modal -->
+                <!-- Modal - Calendar - Add Category -->
+                <div class="modal fade none-border" id="add-category">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title"><strong>Add a category </strong></h4>
+                            </div>
+                            <div class="modal-body">
+                                <form>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label class="control-label">Category Name</label>
+                                            <input class="form-control form-white" placeholder="Enter name" type="text" name="category-name"/>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="control-label">Choose Category Color</label>
+                                            <select class="form-control form-white" data-placeholder="Choose a color..." name="category-color">
+                                                <option value="success">Success</option>
+                                                <option value="danger">Danger</option>
+                                                <option value="info">Info</option>
+                                                <option value="pink">Pink</option>
+                                                <option value="primary">Primary</option>
+                                                <option value="warning">Warning</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-danger waves-effect waves-light save-category" data-dismiss="modal">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <!-- /#add-category -->
+            </div>
+            <!-- .animated -->
+        </div>
+        <!-- /.content -->
+        <div class="clearfix"></div>
+        <!-- Footer -->
+        <footer class="site-footer">
+            <div class="footer-inner bg-white">
+                <div class="row">
+                    <div class="col-sm-6">
+                        Copyright &copy; 2020 Data Pirates
+                    </div>
+                    <div class="col-sm-6 text-right">
+                        Designed by <a href="https://pikdo.info/u/_ig.bhutnz/8060283592">Unclesparkss</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- /.site-footer -->
+    </div>
+    <!-- /#right-panel -->
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
+    <script src="assets/js/main.js"></script>
+
+    <!--  Chart js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.7.3/dist/Chart.bundle.min.js"></script>
+
+    <!--Chartist Chart-->
+    <script src="https://cdn.jsdelivr.net/npm/chartist@0.11.0/dist/chartist.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartist-plugin-legend@0.6.2/chartist-plugin-legend.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery.flot@0.8.3/jquery.flot.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flot-pie@1.0.0/src/jquery.flot.pie.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flot-spline@0.0.1/js/jquery.flot.spline.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/simpleweather@3.1.0/jquery.simpleWeather.min.js"></script>
+    <script src="assets/js/init/weather-init.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.js"></script>
+    <script src="assets/js/init/fullcalendar-init.js"></script>
+
+    <!--Local Stuff-->
+    <script>
+        jQuery(document).ready(function($) {
+            "use strict";
+
+            // Pie chart flotPie1
+            var piedata = [
+                { label: "Desktop visits", data: [[1,32]], color: '#5c6bc0'},
+                { label: "Tab visits", data: [[1,33]], color: '#ef5350'},
+                { label: "Mobile visits", data: [[1,35]], color: '#66bb6a'}
+            ];
+
+            $.plot('#flotPie1', piedata, {
+                series: {
+                    pie: {
+                        show: true,
+                        radius: 1,
+                        innerRadius: 0.65,
+                        label: {
+                            show: true,
+                            radius: 2/3,
+                            threshold: 1
+                        },
+                        stroke: {
+                            width: 0
+                        }
+                    }
+                },
+                grid: {
+                    hoverable: true,
+                    clickable: true
+                }
+            });
+            // Pie chart flotPie1  End
+            // cellPaiChart
+            var cellPaiChart = [
+                { label: "Direct Sell", data: [[1,65]], color: '#5b83de'},
+                { label: "Channel Sell", data: [[1,35]], color: '#00bfa5'}
+            ];
+            $.plot('#cellPaiChart', cellPaiChart, {
+                series: {
+                    pie: {
+                        show: true,
+                        stroke: {
+                            width: 0
+                        }
+                    }
+                },
+                legend: {
+                    show: false
+                },grid: {
+                    hoverable: true,
+                    clickable: true
+                }
+
+            });
+            // cellPaiChart End
+            // Line Chart  #flotLine5
+            var newCust = [[0, 3], [1, 5], [2,4], [3, 7], [4, 9], [5, 3], [6, 6], [7, 4], [8, 10]];
+
+            var plot = $.plot($('#flotLine5'),[{
+                data: newCust,
+                label: 'New Data Flow',
+                color: '#fff'
+            }],
+            {
+                series: {
+                    lines: {
+                        show: true,
+                        lineColor: '#fff',
+                        lineWidth: 2
+                    },
+                    points: {
+                        show: true,
+                        fill: true,
+                        fillColor: "#ffffff",
+                        symbol: "circle",
+                        radius: 3
+                    },
+                    shadowSize: 0
+                },
+                points: {
+                    show: true,
+                },
+                legend: {
+                    show: false
+                },
+                grid: {
+                    show: false
+                }
+            });
+            // Line Chart  #flotLine5 End
+            // Traffic Chart using chartist
+            if ($('#traffic-chart').length) {
+                var chart = new Chartist.Line('#traffic-chart', {
+                  labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                  series: [
+                  [0, 18000, 35000,  25000,  22000,  0],
+                  [0, 33000, 15000,  20000,  15000,  300],
+                  [0, 15000, 28000,  15000,  30000,  5000]
+                  ]
+              }, {
+                  low: 0,
+                  showArea: true,
+                  showLine: false,
+                  showPoint: false,
+                  fullWidth: true,
+                  axisX: {
+                    showGrid: true
+                }
+            });
+
+                chart.on('draw', function(data) {
+                    if(data.type === 'line' || data.type === 'area') {
+                        data.element.animate({
+                            d: {
+                                begin: 2000 * data.index,
+                                dur: 2000,
+                                from: data.path.clone().scale(1, 0).translate(0, data.chartRect.height()).stringify(),
+                                to: data.path.clone().stringify(),
+                                easing: Chartist.Svg.Easing.easeOutQuint
+                            }
+                        });
+                    }
+                });
+            }
+            // Traffic Chart using chartist End
+            //Traffic chart chart-js
+            if ($('#TrafficChart').length) {
+                var ctx = document.getElementById( "TrafficChart" );
+                ctx.height = 150;
+                var myChart = new Chart( ctx, {
+                    type: 'line',
+                    data: {
+                        labels: [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul" ],
+                        datasets: [
+                        {
+                            label: "Visit",
+                            borderColor: "rgba(4, 73, 203,.09)",
+                            borderWidth: "1",
+                            backgroundColor: "rgba(4, 73, 203,.5)",
+                            data: [ 0, 2900, 5000, 3300, 6000, 3250, 0 ]
+                        },
+                        {
+                            label: "Bounce",
+                            borderColor: "rgba(245, 23, 66, 0.9)",
+                            borderWidth: "1",
+                            backgroundColor: "rgba(245, 23, 66,.5)",
+                            pointHighlightStroke: "rgba(245, 23, 66,.5)",
+                            data: [ 0, 4200, 4500, 1600, 4200, 1500, 4000 ]
+                        },
+                        {
+                            label: "Targeted",
+                            borderColor: "rgba(40, 169, 46, 0.9)",
+                            borderWidth: "1",
+                            backgroundColor: "rgba(40, 169, 46, .5)",
+                            pointHighlightStroke: "rgba(40, 169, 46,.5)",
+                            data: [1000, 5200, 3600, 2600, 4200, 5300, 0 ]
+                        }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        tooltips: {
+                            mode: 'index',
+                            intersect: false
+                        },
+                        hover: {
+                            mode: 'nearest',
+                            intersect: true
+                        }
+
+                    }
+                } );
+            }
+            //Traffic chart chart-js  End
+            // Bar Chart #flotBarChart
+            $.plot("#flotBarChart", [{
+                data: [[0, 18], [2, 8], [4, 5], [6, 13],[8,5], [10,7],[12,4], [14,6],[16,15], [18, 9],[20,17], [22,7],[24,4], [26,9],[28,11]],
+                bars: {
+                    show: true,
+                    lineWidth: 0,
+                    fillColor: '#ffffff8a'
+                }
+            }], {
+                grid: {
+                    show: false
+                }
+            });
+            // Bar Chart #flotBarChart End
+        });
+    </script>
+</body>
 </html>

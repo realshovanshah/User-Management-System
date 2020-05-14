@@ -2,7 +2,9 @@ C:\Users\tenzinsparkss\Documents\GitHub\User-Management-System\src\main\java\com
 C:\Users\tenzinsparkss\Documents\GitHub\User-Management-System\src\main\java\com\datapirates\ums\controller\RegisterServlet.java
 C:\Users\tenzinsparkss\Documents\GitHub\User-Management-System\src\main\java\com\datapirates\ums\utils\DBConnection.java
 C:\Users\tenzinsparkss\Documents\GitHub\User-Management-System\src\main\java\com\datapirates\ums\model\User.java
+C:\Users\tenzinsparkss\Documents\GitHub\User-Management-System\src\main\java\com\datapirates\ums\controller\ContactForm.java
 C:\Users\tenzinsparkss\Documents\GitHub\User-Management-System\src\main\java\com\datapirates\ums\controller\ForgotPassword.java
 C:\Users\tenzinsparkss\Documents\GitHub\User-Management-System\src\main\java\com\datapirates\ums\dao\UserDao.java
 C:\Users\tenzinsparkss\Documents\GitHub\User-Management-System\src\main\java\com\datapirates\ums\controller\LogoutServlet.java
+C:\Users\tenzinsparkss\Documents\GitHub\User-Management-System\src\main\java\com\datapirates\ums\model\Contact.java
 C:\Users\tenzinsparkss\Documents\GitHub\User-Management-System\src\main\java\com\datapirates\ums\controller\LoginServlet.java
