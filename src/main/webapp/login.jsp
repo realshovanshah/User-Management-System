@@ -16,7 +16,7 @@
         <%
             String email = String.valueOf(session.getAttribute("email"));
             if(!email.equals("null")){
-                response.sendRedirect("dashboard.jsp");
+                response.sendRedirect("dashboard.jsp?msg=you need to logout first");
             }
         %>
         
