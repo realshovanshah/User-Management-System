@@ -14,27 +14,13 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <!--Session-->
         <%
+            response.setHeader("Cache-Control","no-cache, no-store, must-revalidate");
             String email = String.valueOf(session.getAttribute("email"));
             if(!email.equals("null")){
-                response.sendRedirect("dashboard.jsp?msg=you need to logout first");
+                response.sendRedirect("dashboard.jsp?msg=You need to logout first");
             }
         %>
         
-        <script>
-            function check()
-            {
-                var email = document.getElementById('inputEmail').value;
-                var password = document.getElementById('inputPassword').value;
-                if (email == "" || password == "")
-                {
-                    alert("must fill all the fields");
-                    return false;
-                } else {
-                    return true;
-                }
-            }
-
-        </script>
     </head>
     <body>
         <div class="container-fluid">
@@ -56,9 +42,9 @@
                                             <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password">
                                             <label for="inputEmail" value="password">Password</label>
                                         </div>
-                                        <p id="msg">${param.msg}</p>
+                                        <p id="msg" style="color: red">${param.msg}</p>
                                         <div class="text-center  mb-3">
-                                            <a href="forgot_password.jsp">Forgot Password?</a>
+                                            <a href="verifyEmail.jsp">Forgot Password?</a>
                                         </div>
                                         <button class="btn btn-lg btn-dark btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit">Login</button>
                                         <div class="text-center">

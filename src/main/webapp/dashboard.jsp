@@ -7,7 +7,7 @@
     <%  response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
         String email = String.valueOf(session.getAttribute("email"));
         if (email.equals("null")) {
-            response.sendRedirect("login.jsp?msg= you need to login first");
+            response.sendRedirect("login.jsp?msg=You need to login first");
         }
     %>
 

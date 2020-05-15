@@ -83,27 +83,57 @@ public class UserDao {
 
     }
 
-    public int forgotPassword(User user) throws Exception {
-        int result = 0;
-
+//    public int forgotPassword(User user) throws Exception {
+//        int result = 0;
+//
+//        try {
+//            String sql = "UPDATE user SET pass=? WHERE email=?;";
+//            Connection con = DBConnection.getConnection();
+//
+//            PreparedStatement psmt = con.prepareStatement(sql);
+//            psmt.setString(1, "data");
+//            psmt.setString(2, user.getEmail());
+//
+//            int pss = psmt.executeUpdate();
+//            con.close();
+//            psmt.close();
+//
+//            return pss;
+//
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//
+//        return result;
+//    }
+    
+    public static boolean verifyEmail(String email) {
         try {
-            String sql = "UPDATE user SET pass=? WHERE email=?;";
             Connection con = DBConnection.getConnection();
 
-            PreparedStatement psmt = con.prepareStatement(sql);
-            psmt.setString(1, "data");
-            psmt.setString(2, user.getEmail());
+            String sql = "SELECT * FROM USER WHERE EMAIL=?;";
+            PreparedStatement pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, email);
+            ResultSet rs = pstmt.executeQuery();
 
-            int pss = psmt.executeUpdate();
-            con.close();
-            psmt.close();
+            if (rs.next()) {
+                return true;
+            }
 
-            return pss;
-
-        } catch (SQLException e) {
+        } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
-        }
+        };
 
-        return result;
+        return false;
+
+    }
+    
+    public static boolean recoverPassword(String nPass, String cPass){
+        try{
+        
+        }
+        catch(Exception ex){
+            ex.printStackTrace();
+        }
     }
 }
