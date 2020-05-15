@@ -6,9 +6,13 @@
 package com.datapirates.ums.controller;
 
 import com.datapirates.ums.dao.UserDao;
+import com.datapirates.ums.utils.DBConnection;
 import java.io.IOException;
 import static java.lang.System.out;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,27 +22,41 @@ import javax.servlet.http.HttpSession;
  *
  * @author tenzinsparkss
  */
-public class RecoverPassword extends HttpServlet{
+@WebServlet("/recoverPassword")
+public class RecoverPassword extends HttpServlet {
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         try {
-            String nPass= request.getParameter("nPass");
-            String cPass = request.getParameter("cPass");
-            boolean authe = UserDao.verifyEmail(email);
+            Connection conn = DBConnection.getConnection();
 
-            if (authe) {
-                HttpSession session = request.getSession();
-                session.setAttribute("email", email);
-                response.sendRedirect("recoverPassword.jsp?msg=email has been verified");
-                out.println(email);
+            String email = request.getParameter("email");
+            String nPass = request.getParameter("nPass");
+
+            PreparedStatement pstmt = conn.prepareStatement("UPDATE USER SET PASSWORD=? WHERE EMAIL=?");
+            pstmt.setString(2, email);
+            pstmt.setString(1, nPass);
+
+            int i = pstmt.executeUpdate();
+            if (i > 0) {
+                response.sendRedirect("recoverPassword.jsp?msg=Successfully, Password has been changed");
+
             } else {
-                response.sendRedirect("verifyEmail.jsp?msg=email does not exist");
+                response.sendRedirect("recoverPassword.jsp");
             }
-
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-    
+
+//            if (authe) {
+//                HttpSession session = request.getSession();
+//                session.setAttribute("email", email);
+//                response.sendRedirect("recoverPassword.jsp?msg=email has been verified");
+//                out.println(email);
+//            } else {
+//                response.sendRedirect("verifyEmail.jsp?msg=email does not exist");
+//            }
+    }
 }

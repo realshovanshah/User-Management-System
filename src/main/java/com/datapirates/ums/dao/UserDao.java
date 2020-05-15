@@ -115,27 +115,30 @@ public class UserDao {
 
     }
 
-    public int forgotPassword(User user) throws Exception {
-        int result = 0;
-
-        try {
-            String sql = "UPDATE user SET pass=? WHERE email=?;";
-            Connection con = DBConnection.getConnection();
-
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.setString(1, "data");
-            ps.setString(2, user.getEmail());
-
-            con.close();
-            ps.close();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return result;
-    }
-
+//    public static void recoverPassowrd(String email, String npass) throws Exception {
+//        try {
+//            Connection con = DBConnection.getConnection();
+//            String sql = "UPDATE user SET password=? WHERE email=?;";
+//            
+//            PreparedStatement pstmt = con.prepareStatement(sql);
+//            pstmt.setString(2, email);
+//            pstmt.setString(1, npass);
+//            
+//            int i = pstmt.executeUpdate();
+//            
+//            if(i>0){
+//                response.sendRedirect("recover.jsp?msg=Password changed successfully");
+//            }
+//            else{
+//                response.sendRedirect("");
+//            }
+//
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//
+// 
+//    }
     public void delete(int id) throws ClassNotFoundException {
         try {
             String sql = "DELETE FROM USER WHERE ID = ?";
@@ -148,7 +151,7 @@ public class UserDao {
         } catch (SQLException e) {
         }
     }
-    
+
     public void blockUser(int id) throws Exception {
 
         try {
@@ -160,8 +163,6 @@ public class UserDao {
 
             ps.setInt(1, id);
             ps.executeUpdate();
-
-
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -181,13 +182,36 @@ public class UserDao {
             ps.setInt(1, id);
             ps.executeUpdate();
 
-
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
     }
-    
+
+    public static boolean verifyEmail(String email) {
+       
+            try {
+                Connection con = DBConnection.getConnection();
+                
+                String sql = "SELECT * FROM USER WHERE EMAIL=?;";
+           
+                PreparedStatement pstmt = con.prepareStatement(sql);
+                pstmt.setString(1, email);
+
+                ResultSet rs = pstmt.executeQuery();              
+                
+                if (rs.next()) {
+                    return true;
+                }
+
+            } 
+            catch (ClassNotFoundException | SQLException e) {
+                e.printStackTrace();
+                
+            };
+        
+        return false;
+
+        
 }
-    
+}

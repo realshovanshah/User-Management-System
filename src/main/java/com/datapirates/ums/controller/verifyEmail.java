@@ -33,10 +33,10 @@ public class verifyEmail extends HttpServlet {
             if (authe) {
                 HttpSession session = request.getSession();
                 session.setAttribute("email", email);
-                response.sendRedirect("recoverPassword.jsp?msg=email has been verified");
+                response.sendRedirect("recoverPassword.jsp?msg=Your Email has been verified");
                 out.println(email);
             } else {
-                response.sendRedirect("verifyEmail.jsp?msg=email does not exist");
+                response.sendRedirect("verifyEmail.jsp?msg=Your Email does not exist");
             }
 
         } catch (Exception ex) {

@@ -30,17 +30,17 @@
                                             <label for="inputEmail">Email</label>
                                         </div>
                                         <div class="form-label-group">
-                                            <input type="email" id="inputEmail" class="form-control" placeholder="New Password" name="nPass">
+                                            <input type="password" id="inputPassword" class="form-control" placeholder="New Password" name="nPass">
                                             <label for="inputEmail">New Password</label>
                                         </div>
                                           <div class="form-label-group">
-                                            <input type="email" id="inputEmail" class="form-control" placeholder="Confirm Password" name="cPass">
+                                            <input type="password" id="inputPassword" class="form-control" placeholder="Confirm Password" name="cPass">
                                             <label for="inputEmail">Confirm Password</label>
                                         </div>
                                         <button class="btn btn-lg btn-dark btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit" value="click">Submit</button>
                                         <div class="text-center">
                                             <p style="color: red">${param.msg}</p>
-                                            <a class="small " href="login.jsp">Click here to login again</a></div>
+                                            <a class="small" href="login.jsp">Please go back to login</a></div>
                                     </form>
                                 </div>
                             </div>
