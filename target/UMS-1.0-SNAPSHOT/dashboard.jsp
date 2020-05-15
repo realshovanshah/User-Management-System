@@ -6,8 +6,8 @@
     <title>Data Pirates - User Management System</title>
     <!--Check session-->
     <%  response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
-        String email = String.valueOf(session.getAttribute("email"));
-        if (email.equals("null")) {
+        String user = String.valueOf(session.getAttribute("user"));
+        if (user.equals("null")) {
             response.sendRedirect("login.jsp?msg= you need to login first");
         }
     %>

@@ -19,22 +19,7 @@
                 response.sendRedirect("dashboard.jsp?msg=you need to logout first");
             }
         %>
-        
-        <script>
-            function check()
-            {
-                var email = document.getElementById('inputEmail').value;
-                var password = document.getElementById('inputPassword').value;
-                if (email == "" || password == "")
-                {
-                    alert("must fill all the fields");
-                    return false;
-                } else {
-                    return true;
-                }
-            }
 
-        </script>
     </head>
     <body>
         <div class="container-fluid">
