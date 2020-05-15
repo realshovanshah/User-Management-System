@@ -6,6 +6,7 @@
 package com.datapirates.ums.controller;
 
 import com.datapirates.ums.dao.UserDao;
+import com.datapirates.ums.model.User;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -41,14 +42,15 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try{
+            HttpSession session = request.getSession();
             String email = request.getParameter("email");
             String password = request.getParameter("password");
             
-            boolean auth = UserDao.validateUser(email,password);
+            User auth = UserDao.validateUser(email,password);
             
-            if(auth){
-              HttpSession session = request.getSession();
-              session.setAttribute("email", email);
+            if(auth != null){
+              session.setAttribute("isLoggedIn", "true");
+              session.setAttribute("user", auth);
               response.sendRedirect("dashboard.jsp");
             }
             else{

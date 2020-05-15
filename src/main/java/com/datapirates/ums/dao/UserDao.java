@@ -31,14 +31,14 @@ public class UserDao {
             ps.setString(4, user.getPassword());
 
             ps.executeUpdate();
-            return;
         } catch (ClassNotFoundException | SQLException e) {
             throw e;
         }
 
     }
 
-    public static boolean validateUser(String email, String password) {
+    public static User validateUser(String email, String password) {
+        User user = null;
         try {
             Connection con = DBConnection.getConnection();
 
@@ -49,14 +49,24 @@ public class UserDao {
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-                return true;
+                user = new User();
+                user.setFname(rs.getString("fname"));
+                user.setLname(rs.getString("lname"));
+                user.setEmail(rs.getString("email"));
+                user.setPassword(rs.getString("password"));
+                user.setAge(rs.getString("age"));
+                user.setGender(rs.getString("gender"));
+                user.setId(rs.getInt("id"));
+                user.setIs_admin(rs.getInt("is_admin"));
+                user.setIs_blocked(rs.getInt("is_blocked"));
+
             }
 
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         };
 
-        return false;
+        return user;
 
     }
 
@@ -76,8 +86,30 @@ public class UserDao {
             ps.setInt(7, user.getIs_admin());
 
             ps.executeUpdate();
-            return;
         } catch (ClassNotFoundException | SQLException e) {
+            throw e;
+        }
+
+    }
+
+    public static void updateUser(User user) throws Exception {
+
+        try {
+            Connection con = DBConnection.getConnection();
+            String sql = "UPDATE USER SET FNAME=?, LNAME=?, EMAIL=?, PASSWORD=?, AGE=?, GENDER=?, IS_ADMIN=? WHERE ID=?;";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, user.getFname());
+            ps.setString(2, user.getLname());
+            ps.setString(3, user.getEmail());
+            ps.setString(4, user.getPassword());
+            ps.setString(5, user.getAge());
+            ps.setString(6, user.getGender());
+            ps.setInt(7, user.getIs_admin());
+            ps.setInt(8, user.getId());
+
+            ps.executeUpdate();
+
+        } catch (Exception e) {
             throw e;
         }
 
@@ -90,15 +122,12 @@ public class UserDao {
             String sql = "UPDATE user SET pass=? WHERE email=?;";
             Connection con = DBConnection.getConnection();
 
-            PreparedStatement psmt = con.prepareStatement(sql);
-            psmt.setString(1, "data");
-            psmt.setString(2, user.getEmail());
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, "data");
+            ps.setString(2, user.getEmail());
 
-            int pss = psmt.executeUpdate();
             con.close();
-            psmt.close();
-
-            return pss;
+            ps.close();
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -106,4 +135,59 @@ public class UserDao {
 
         return result;
     }
+
+    public void delete(int id) throws ClassNotFoundException {
+        try {
+            String sql = "DELETE FROM USER WHERE ID = ?";
+            Connection con = DBConnection.getConnection();
+
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            ps.execute();
+
+        } catch (SQLException e) {
+        }
+    }
+    
+    public void blockUser(int id) throws Exception {
+
+        try {
+
+            String sql = "UPDATE USER SET is_blocked=1 where id=?;";
+
+            Connection con = DBConnection.getConnection();
+            PreparedStatement ps = con.prepareStatement(sql);
+
+            ps.setInt(1, id);
+            ps.executeUpdate();
+
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void unblockUser(int id) throws Exception {
+
+        try {
+
+            String sql = "UPDATE USER SET is_blocked=0 where id=?;";
+
+            Connection con = DBConnection.getConnection();
+            PreparedStatement ps = con.prepareStatement(sql);
+
+            ps.setInt(1, id);
+            ps.executeUpdate();
+
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+    
 }
+    

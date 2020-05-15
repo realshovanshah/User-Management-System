@@ -22,6 +22,14 @@ public class User {
     private int is_admin;
     private int is_blocked;
 
+    public int getIs_blocked() {
+        return is_blocked;
+    }
+
+    public void setIs_blocked(int is_blocked) {
+        this.is_blocked = is_blocked;
+    }
+
     public String getGender() {
         return gender;
     }
