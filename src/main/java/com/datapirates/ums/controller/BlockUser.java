@@ -6,10 +6,9 @@
 package com.datapirates.ums.controller;
 
 import com.datapirates.ums.dao.UserDao;
-import com.datapirates.ums.model.User;
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,11 +18,9 @@ import javax.servlet.http.HttpSession;
  *
  * @author Shah Jr
  */
-@WebServlet("/login")
-public class LoginServlet extends HttpServlet {
+public class BlockUser extends HttpServlet {
 
-   
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -33,32 +30,21 @@ public class LoginServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        
-    }
-
-   
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try{
-            HttpSession session = request.getSession();
-            String email = request.getParameter("email");
-            String password = request.getParameter("password");
-            
-            User auth = UserDao.validateUser(email,password);
-            
-            if(auth != null){
-              session.setAttribute("isLoggedIn", "true");
-              session.setAttribute("user", auth);
-              response.sendRedirect("dashboard.jsp");
-            }
-            else{
-                response.sendRedirect("login.jsp");
-            }
-            
-            
-        }catch(Exception e){
+        int id = Integer.parseInt(request.getParameter("id"));
+
+        UserDao dao = new UserDao();
+
+        HttpSession session = request.getSession();
+        try {
+            dao.blockUser(id);
+
+            session.setAttribute("blocked", "The user has been blocked.");
+
+            response.sendRedirect("dashboard.jsp");
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
