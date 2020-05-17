@@ -1,4 +1,9 @@
 <!doctype html>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.Connection"%>
 
 <head>
     <meta charset="utf-8">
@@ -191,105 +196,74 @@
         </header>
         <!-- /#header -->
         <!-- Content -->
-        <div class="content ">
-            <!-- Animated -->
-            <div class="animated fadeIn ">
-                <!-- Widgets  -->
-                <div class="row ">
-                    <div class="col-lg-3 col-md-6 ">
-                        <div class="card ">
-                            <div class="card-body ">
-                                <div class="stat-widget-five ">
-                                    <div class="stat-icon dib flat-color-1 ">
-                                        <i class="pe-7s-cash "></i>
-                                    </div>
-                                    <div class="stat-content ">
-                                        <div class="text-left dib ">
-                                            <div class="stat-text "><span class="count ">154</span></div>
-                                            <div class="stat-heading ">No. of visits</div>
-                                        </div>
-                                    </div>
+        <div class="breadcrumbs">
+                <div class="breadcrumbs-inner">
+                    <div class="row m-0">
+                        <div class="col-sm-4">
+                            <div class="page-header float-left">
+                                <div class="page-title">
+                                    <h1>Dashboard</h1>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="col-lg-3 col-md-6 ">
-                        <div class="card ">
-                            <div class="card-body ">
-                                <div class="stat-widget-five ">
-                                    <div class="stat-icon dib flat-color-2 ">
-                                        <i class="pe-7s-cart "></i>
-                                    </div>
-                                    <div class="stat-content ">
-                                        <div class="text-left dib ">
-                                            <div class="stat-text "><span class="count ">5</span></div>
-                                            <div class="stat-heading ">Blocked Users</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6 ">
-                        <div class="card ">
-                            <div class="card-body ">
-                                <div class="stat-widget-five ">
-                                    <div class="stat-icon dib flat-color-3 ">
-                                        <i class="pe-7s-browser "></i>
-                                    </div>
-                                    <div class="stat-content ">
-                                        <div class="text-left dib ">
-                                            <div class="stat-text "><span class="count ">3</span></div>
-                                            <div class="stat-heading ">Admins</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6 ">
-                        <div class="card ">
-                            <div class="card-body ">
-                                <div class="stat-widget-five ">
-                                    <div class="stat-icon dib flat-color-4 ">
-                                        <i class="pe-7s-users "></i>
-                                    </div>
-                                    <div class="stat-content ">
-                                        <div class="text-left dib ">
-                                            <div class="stat-text "><span class="count ">28</span></div>
-                                            <div class="stat-heading ">Clients</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
-                <!-- /Widgets -->
-                
-                <!-- /To Do and Live Chat -->
-                <!-- Calender Chart Weather  -->
-                 <div class="row">
-                    <div class="col-md-12 col-lg-4">
-                        <div class="card">
-                            <div class="card-body">
-                                 <!--<h4 class="box-title">Chandler</h4>--> 
-                                <div class="calender-cont widget-calender">
-                                    <div id="calendar"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /.card -->
-                    </div>
-                </div>
+            </div>
+                <!--Table of User lists-->
+                <table id="example" class="table table-striped table-bordered" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>First name</th>
+                            <th>Last name</th>
+                            <th>Email Address</th>
+                            <th>Gender</th>
+                            <th>Age</th>
+                            <th>Date Created</th>
+                        </tr>
+                    </thead>
+                    <%
+                        try {
+                            Class.forName("com.mysql.jdbc.Driver");
+                            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/ums?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "");
+                            String sql = "Select * from user";
+                            Statement stmt = conn.createStatement();
+                            ResultSet rs = stmt.executeQuery(sql);
+                            while (rs.next()) {
+                    %>
+                    <tbody>
+                        <tr>
+                            <td><%=rs.getString("fname")%></td>
+                            <td><%=rs.getString("lname")%></td>
+                            <td><%=rs.getString("email")%></td>
+                            <td><%=rs.getString("gender")%></td>
+                            <td><%=rs.getInt("age")%></td>
+                            <td><%=rs.getString("date_created")%></td>
+                        </tr>
+                    </tbody> 
+                    <%
+                            }
 
-                <!-- /#event-modal -->
-            
-            <!-- .animated -->
-        </div>
+                        } catch (ClassNotFoundException e) {
+                            out.println("Exception: " + e.getMessage());
+                            e.printStackTrace();
+
+                        }
+
+
+                    %>
+
+                    <tfoot>
+                        <tr>
+                            <th>Name</th>
+                            <th>Position</th>
+                            <th>Office</th>
+                            <th>Age</th>
+                            <th>Start date</th>
+                            <th>Salary</th>
+                        </tr>
+                    </tfoot>
+                </table>
         <!-- /.content -->
         <div class="clearfix "></div>
         <!-- Footer -->

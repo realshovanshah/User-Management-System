@@ -1,5 +1,7 @@
 D:\Users\Shah Jr\Current\UMS\src\main\java\com\datapirates\ums\controller\ContactForm.java
 D:\Users\Shah Jr\Current\UMS\src\main\java\com\datapirates\ums\controller\UnblockUser.java
+D:\Users\Shah Jr\Current\UMS\src\main\java\com\datapirates\ums\controller\verifyEmail.java
+D:\Users\Shah Jr\Current\UMS\src\main\java\com\datapirates\ums\controller\RecoverPassword.java
 D:\Users\Shah Jr\Current\UMS\src\main\java\com\datapirates\ums\model\Contact.java
 D:\Users\Shah Jr\Current\UMS\src\main\java\com\datapirates\ums\controller\BlockUser.java
 D:\Users\Shah Jr\Current\UMS\src\main\java\com\datapirates\ums\controller\RegisterServlet.java
