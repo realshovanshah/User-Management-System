@@ -17,7 +17,8 @@
         <link rel="stylesheet" href="css/admin_profile.css">
     </head>
     <body>
-        <div class="container">
+        <%@include file="navbar.jsp"%>
+        <div class="container"  style="padding:20px;">
             <div class="row flex-lg-nowrap">
                 <div class="col-12 col-lg-auto mb-3" style="width: 200px;">
                 </div>
@@ -120,16 +121,7 @@
                         </div>
 
                         <div class="col-12 col-md-3 mb-3">
-                            <div class="card mb-3">
-                                <div class="card-body">
-                                    <div class="px-xl-3">
-                                        <button class="btn btn-block btn-secondary">
-                                            <i class="fa fa-sign-out"></i>
-                                            <span>Logout</span>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
+
                             <div class="card">
                                 <div class="card-body">
                                     <h6 class="card-title font-weight-bold">Support</h6>
@@ -143,5 +135,6 @@
                 </div>
             </div>
         </div>
+        <%@include file="footer.jsp"%>
     </body>
 </html>

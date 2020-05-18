@@ -30,13 +30,16 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <link href="http://netdna.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
-        <title>Admin Profile</title>
+        <title>Data Pirates - Admin Profile</title>
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
         <link rel="stylesheet" href="css/admin_profile.css">
     </head>
     <body>
+        <!--Navbar--> 
+        <%@include file="navbar.jsp"%>
+        
         <div class="container">
-            <div class="row flex-lg-nowrap">
+            <div class="row flex-lg-nowrap" style="padding:20px;">
                 <div class="col-12 col-lg-auto mb-3" style="width: 200px;">
                 </div>
 
@@ -55,8 +58,9 @@
                                                             <div class="row">
                                                                 <div class="col">
                                                                     <div class="form-group">
-                                                                        <label>First Name</label>
+                                                                        <label>ID</label>
                                                                         <input type="" name="id" value="<%= id%>">
+                                                                        <label>First Name</label>                                                                        
                                                                         <input class="form-control" type="text" name="fname" value="<%= fname %>">
                                                                     </div>
                                                                 </div>
@@ -140,14 +144,6 @@
 
                         <div class="col-12 col-md-3 mb-3">
                             <div class="card mb-3">
-                                <div class="card-body">
-                                    <div class="px-xl-3">
-                                        <button class="btn btn-block btn-secondary">
-                                            <i class="fa fa-sign-out"></i>
-                                            <span>Logout</span>
-                                        </button>
-                                    </div>
-                                </div>
                             </div>
                             <div class="card">
                                 <div class="card-body">
@@ -162,5 +158,6 @@
                 </div>
             </div>
         </div>
+                                                                        <%@include file="footer.jsp"%>
     </body>
 </html>
