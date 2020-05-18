@@ -4,6 +4,7 @@ D:\Users\Shah Jr\Current\UMS\src\main\java\com\datapirates\ums\controller\verify
 D:\Users\Shah Jr\Current\UMS\src\main\java\com\datapirates\ums\controller\RecoverPassword.java
 D:\Users\Shah Jr\Current\UMS\src\main\java\com\datapirates\ums\model\Contact.java
 D:\Users\Shah Jr\Current\UMS\src\main\java\com\datapirates\ums\controller\BlockUser.java
+D:\Users\Shah Jr\Current\UMS\src\main\java\com\datapirates\ums\controller\UserDetails.java
 D:\Users\Shah Jr\Current\UMS\src\main\java\com\datapirates\ums\controller\RegisterServlet.java
 D:\Users\Shah Jr\Current\UMS\src\main\java\com\datapirates\ums\utils\DBConnection.java
 D:\Users\Shah Jr\Current\UMS\src\main\java\com\datapirates\ums\controller\LogoutServlet.java
@@ -11,5 +12,5 @@ D:\Users\Shah Jr\Current\UMS\src\main\java\com\datapirates\ums\model\User.java
 D:\Users\Shah Jr\Current\UMS\src\main\java\com\datapirates\ums\controller\LoginServlet.java
 D:\Users\Shah Jr\Current\UMS\src\main\java\com\datapirates\ums\dao\UserDao.java
 D:\Users\Shah Jr\Current\UMS\src\main\java\com\datapirates\ums\controller\AddUserServlet.java
-D:\Users\Shah Jr\Current\UMS\src\main\java\com\datapirates\ums\controller\DeleteUser.java
+D:\Users\Shah Jr\Current\UMS\src\main\java\com\datapirates\ums\controller\DeleteServlet.java
 D:\Users\Shah Jr\Current\UMS\src\main\java\com\datapirates\ums\controller\UpdateUserServlet.java

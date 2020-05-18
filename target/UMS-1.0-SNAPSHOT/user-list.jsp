@@ -138,7 +138,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Manage</a>
                         <ul class="sub-menu children dropdown-menu ">
                             <li><i class="menu-icon fa fa-fort-awesome "></i><a href="add-user.jsp">Add Users</a></li>
-                            <li><i class="menu-icon ti-themify-logo "></i><a href="edit-user.jsp">Edit Users</a></li>
+                            <li><i class="menu-icon ti-themify-logo "></i><a href="manage-user.jsp">Edit Users</a></li>
                         </ul>
                     </li>
                     <li>
@@ -196,7 +196,7 @@
         </header>
         <!-- /#header -->
         <!-- Content -->
-        <div class="breadcrumbs">
+        <div class="breadcrumbs" style="margin-bottom:30px;">
                 <div class="breadcrumbs-inner">
                     <div class="row m-0">
                         <div class="col-sm-4">
@@ -210,8 +210,9 @@
                     </div>
                 </div>
             </div>
+        <br>
                 <!--Table of User lists-->
-                <table id="example" class="table table-striped table-bordered" style="width:100%">
+                <table id="example" class="table table-striped table-bordered" style="width:95.7%; margin-left:29px;">
                     <thead>
                         <tr>
                             <th>First name</th>

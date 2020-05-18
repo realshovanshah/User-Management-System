@@ -136,9 +136,35 @@ public class UserDao {
 //        } catch (SQLException e) {
 //            e.printStackTrace();
 //        }
-//
-// 
 //    }
+    public User userDetails(int id) throws ClassNotFoundException {
+        User user = null;
+        try {
+            String sql = "SELECT * FROM USER where id=?;";
+            Connection con = DBConnection.getConnection();
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                user = new User();
+                user.setFname(rs.getString("fname"));
+                user.setLname(rs.getString("lname"));
+                user.setEmail(rs.getString("email"));
+                user.setPassword(rs.getString("password"));
+                user.setAge(rs.getString("age"));
+                user.setGender(rs.getString("gender"));
+                user.setId(rs.getInt("id"));
+                user.setIs_admin(rs.getInt("is_admin"));
+                user.setIs_blocked(rs.getInt("is_blocked"));
+            }
+            con.close();
+            ps.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return user;
+    }
+
     public void delete(int id) throws ClassNotFoundException {
         try {
             String sql = "DELETE FROM USER WHERE ID = ?";
@@ -189,29 +215,27 @@ public class UserDao {
     }
 
     public static boolean verifyEmail(String email) {
-       
-            try {
-                Connection con = DBConnection.getConnection();
-                
-                String sql = "SELECT * FROM USER WHERE EMAIL=?;";
-           
-                PreparedStatement pstmt = con.prepareStatement(sql);
-                pstmt.setString(1, email);
 
-                ResultSet rs = pstmt.executeQuery();              
-                
-                if (rs.next()) {
-                    return true;
-                }
+        try {
+            Connection con = DBConnection.getConnection();
 
-            } 
-            catch (ClassNotFoundException | SQLException e) {
-                e.printStackTrace();
-                
-            };
-        
+            String sql = "SELECT * FROM USER WHERE EMAIL=?;";
+
+            PreparedStatement pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, email);
+
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                return true;
+            }
+
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+
+        };
+
         return false;
 
-        
-}
+    }
 }

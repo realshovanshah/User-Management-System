@@ -133,7 +133,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Manage</a>
                         <ul class="sub-menu children dropdown-menu ">
                             <li><i class="menu-icon fa fa-fort-awesome "></i><a href="add-user.jsp">Add Users</a></li>
-                            <li><i class="menu-icon ti-themify-logo "></i><a href="edit-user.jsp">Edit Users</a></li>
+                            <li><i class="menu-icon ti-themify-logo "></i><a href="manage-user.jsp">Edit Users</a></li>
                         </ul>
                     </li>
                     <li>

@@ -9,6 +9,7 @@ import com.datapirates.ums.dao.UserDao;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,6 +19,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Shah Jr
  */
+@WebServlet("/block")
 public class BlockUser extends HttpServlet {
 
 // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -42,7 +44,7 @@ public class BlockUser extends HttpServlet {
 
             session.setAttribute("blocked", "The user has been blocked.");
 
-            response.sendRedirect("dashboard.jsp");
+            response.sendRedirect("manage-user.jsp");
 
         } catch (Exception e) {
             e.printStackTrace();
