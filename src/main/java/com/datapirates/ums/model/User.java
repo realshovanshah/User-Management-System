@@ -11,7 +11,7 @@ package com.datapirates.ums.model;
  * @author Shah Jr
  */
 public class User {
-    private int id;
+    public int id;
     private String fname;
     private String lname;
     private String email;

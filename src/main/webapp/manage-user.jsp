@@ -48,7 +48,7 @@
 
     </head>
     <body>
-        <%--<%@include file="navbar.jsp"%>--%>
+        <%@include file="navbar.jsp"%>
 
         <div class="clearfix"></div>
         <div class="limiter">

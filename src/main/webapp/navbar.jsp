@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%Integer uid = (Integer) session.getAttribute("id");%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -114,8 +115,8 @@
                         <li class="menu-item-has-children dropdown">
                             <a href="#" class="dropdown-toggle"  data-toggle="dropdown"  aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Profile</a>
                             <ul class="sub-menu children dropdown-menu ">
-                                <li><i class="menu-icon fa fa-fort-awesome "></i><a href="#">View Profile</a></li>
-                                <li><i class="menu-icon ti-themify-logo "></i><a href="edit-user.jsp">Edit Profile</a></li>
+                                <li><i class="menu-icon fa fa-fort-awesome "></i><a href="view-profile.jsp">View Profile</a></li>
+                                <li><i class="menu-icon ti-themify-logo "></i><a href="editUser?id=<%= uid%>">Edit Profile</a></li>
                             </ul>
                         </li>
 
@@ -164,7 +165,6 @@
                                     <button class="search-close" type="submit"><i class="fa fa-close"></i></button>
                                 </form>
                             </div>
-
 
                         </div>
 

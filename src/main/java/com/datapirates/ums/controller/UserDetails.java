@@ -35,15 +35,7 @@ public class UserDetails extends HttpServlet {
             User user = dao.userDetails(id);
             HttpSession session = request.getSession();       
 
-            session.setAttribute("fname", user.getFname());
-            session.setAttribute("lname", user.getLname());
-            session.setAttribute("email", user.getEmail());
-            session.setAttribute("password", user.getPassword());
-            session.setAttribute("age", user.getAge());
-            session.setAttribute("gender", user.getGender());
-            session.setAttribute("id", user.getId());
-            session.setAttribute("is_admin", user.getIs_admin());
-            session.setAttribute("is_blocked", user.getIs_blocked());
+            session.setAttribute("user", user);
             response.sendRedirect("edit-user.jsp");           
 
         } catch (ClassNotFoundException ex) {

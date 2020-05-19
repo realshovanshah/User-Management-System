@@ -7,21 +7,10 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%
-    
-    String email = (String) session.getAttribute("email");
 
-    String fname = (String) session.getAttribute("username");
+    User user = (User) session.getAttribute("user");
 
-    String lname = (String) session.getAttribute("birth_date");
-    
-    String password = (String) session.getAttribute("password");
-    
-    String age = (String) session.getAttribute("age");
-    String gender = (String) session.getAttribute("gender");
-        
-    Integer is_admin = (Integer) session.getAttribute("is_admin");
-    
-    Integer id = (Integer) session.getAttribute("id");%>
+%>
 
 <!DOCTYPE html>
 <html>
@@ -59,15 +48,15 @@
                                                                 <div class="col">
                                                                     <div class="form-group">
                                                                         <label>ID</label>
-                                                                        <input type="" name="id" value="<%= id%>">
+                                                                        <input type="" name="id" value="<%= user.getId()%>">
                                                                         <label>First Name</label>                                                                        
-                                                                        <input class="form-control" type="text" name="fname" value="<%= fname %>">
+                                                                        <input class="form-control" type="text" name="fname" value="<%= user.getFname() %>">
                                                                     </div>
                                                                 </div>
                                                                 <div class="col">
                                                                     <div class="form-group">
                                                                         <label>Last Name</label>
-                                                                        <input class="form-control" type="text" name="lname" value="<%= lname %>">
+                                                                        <input class="form-control" type="text" name="lname" value="<%= user.getLname() %>">
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -75,7 +64,7 @@
                                                                 <div class="col">
                                                                     <div class="form-group">
                                                                         <label>Email</label>
-                                                                        <input class="form-control" type="text" name="email" value="<%= email%>">
+                                                                        <input class="form-control" type="text" name="email" value="<%= user.getEmail()%>">
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -83,13 +72,13 @@
                                                                 <div class="col">
                                                                     <div class="form-group">
                                                                         <label>Age</label>
-                                                                        <input class="form-control" type="text" name="age" value="<%= age %>">
+                                                                        <input class="form-control" type="text" name="age" value="<%= user.getAge() %>">
                                                                     </div>
                                                                 </div>
                                                                 <div class="col">
                                                                     <div class="form-group">
                                                                         <label>Gender</label>
-                                                                        <input class="form-control" type="text" name="gender" value="<%= gender%>">
+                                                                        <input class="form-control" type="text" name="gender" value="<%= user.getGender()%>">
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -99,7 +88,7 @@
                                                                         <div class="col">
                                                                             <div class="form-group">
                                                                                 <label>Confirm <span class="d-none d-xl-inline">Password</span></label>
-                                                                                <input class="form-control" name = "password" type="password" value="<%= password%>"></div>
+                                                                                <input class="form-control" name = "password" type="password" value="<%= user.getPassword()%>"></div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -109,7 +98,7 @@
                                                                 <div class="col">
                                                                     <div class="form-group">
                                                                         <label> <span class="d-none d-xl-inline">User Type</span></label>
-                                                                        <select name="is_admin" value="<%= is_admin%>" style='width: 100%; padding: 10px;'>
+                                                                        <select name="is_admin" value="<%= user.getIs_admin()%>" style='width: 100%; padding: 10px;'>
 
                                                                             <option value="" selected disabled hidden>-- select user type --</option>
 

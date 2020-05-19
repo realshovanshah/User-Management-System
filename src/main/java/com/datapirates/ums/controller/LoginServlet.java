@@ -7,7 +7,12 @@ package com.datapirates.ums.controller;
 
 import com.datapirates.ums.dao.UserDao;
 import com.datapirates.ums.model.User;
+import com.datapirates.ums.utils.DBConnection;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -51,7 +56,22 @@ public class LoginServlet extends HttpServlet {
             if(auth != null){
               session.setAttribute("isLoggedIn", "true");
               session.setAttribute("user", auth);
+              session.setAttribute("id", auth.getId());
+              Connection con = DBConnection.getConnection();
+
+                String sql = "INSERT INTO history_log (id, login_time, login_date) values(?, ?, ?);";
+
+                PreparedStatement ps = con.prepareStatement(sql);
+                ps.setInt(1, auth.getId());
+                ps.setObject(2, java.sql.Time.valueOf(LocalTime.now()));
+                ps.setObject(3, LocalDate.now());
+                ps.execute();
+                con.close();
+
+                ps.close();
+                    
               response.sendRedirect("dashboard.jsp");
+              
             }
             else{
                 response.sendRedirect("login.jsp");

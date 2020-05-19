@@ -11,9 +11,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Data Pirates</title>
     </head>
-    <body>
-        <!-- Footer -->
-        <footer class="site-footer ">
+    <footer class="site-footer ">
             <div class="footer-inner bg-white ">
                 <div class="row ">
                     <div class="col-sm-6 ">
@@ -25,6 +23,4 @@
                 </div>
             </div>
         </footer>
-        <!-- /.site-footer -->
-    </body>
 </html>
