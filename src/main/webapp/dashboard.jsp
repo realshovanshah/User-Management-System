@@ -99,6 +99,58 @@
                 </div>
             </div>
             <!-- /Widgets -->
+            <!--  Traffic  -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="box-title">User Management System Traffic </h4>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <div class="card-body">
+                                    <!-- <canvas id="TrafficChart"></canvas>   -->
+                                    <div id="traffic-chart" class="traffic-chart"></div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="card-body">
+                                    <div class="progress-box progress-1">
+                                        <h4 class="por-title">Visits</h4>
+                                        <div class="por-txt">96,930 Users (40%)</div>
+                                        <div class="progress mb-2" style="height: 5px;">
+                                            <div class="progress-bar bg-flat-color-1" role="progressbar" style="width: 40%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+                                    <div class="progress-box progress-2">
+                                        <h4 class="por-title">Blocked Users</h4>
+                                        <div class="por-txt">3,220 Users (24%)</div>
+                                        <div class="progress mb-2" style="height: 5px;">
+                                            <div class="progress-bar bg-flat-color-2" role="progressbar" style="width: 24%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+                                    <div class="progress-box progress-2">
+                                        <h4 class="por-title">Admins</h4>
+                                        <div class="por-txt">29,658 Users (60%)</div>
+                                        <div class="progress mb-2" style="height: 5px;">
+                                            <div class="progress-bar bg-flat-color-3" role="progressbar" style="width: 60%;" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+                                    <div class="progress-box progress-2">
+                                        <h4 class="por-title">Clients</h4>
+                                        <div class="por-txt">99,658 Users (90%)</div>
+                                        <div class="progress mb-2" style="height: 5px;">
+                                            <div class="progress-bar bg-flat-color-4" role="progressbar" style="width: 90%;" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+                                </div> <!-- /.card-body -->
+                            </div>
+                        </div> <!-- /.row -->
+                        <div class="card-body"></div>
+                    </div>
+                </div><!-- /# column -->
+            </div>
+            <!--  /Traffic -->
 
             <!-- /To Do and Live Chat -->
             <!-- Calender Chart Weather  -->
@@ -169,94 +221,6 @@
     <script>
         jQuery(document).ready(function ($) {
             "use strict ";
-
-            // Pie chart flotPie1
-            var piedata = [
-                {label: "Desktop visits ", data: [[1, 32]], color: '#5c6bc0'},
-                {label: "Tab visits ", data: [[1, 33]], color: '#ef5350'},
-                {label: "Mobile visits ", data: [[1, 35]], color: '#66bb6a'}
-            ];
-
-            $.plot('#flotPie1', piedata, {
-                series: {
-                    pie: {
-                        show: true,
-                        radius: 1,
-                        innerRadius: 0.65,
-                        label: {
-                            show: true,
-                            radius: 2 / 3,
-                            threshold: 1
-                        },
-                        stroke: {
-                            width: 0
-                        }
-                    }
-                },
-                grid: {
-                    hoverable: true,
-                    clickable: true
-                }
-            });
-            // Pie chart flotPie1  End
-            // cellPaiChart
-            var cellPaiChart = [
-                {label: "Direct Sell ", data: [[1, 65]], color: '#5b83de'},
-                {label: "Channel Sell ", data: [[1, 35]], color: '#00bfa5'}
-            ];
-            $.plot('#cellPaiChart', cellPaiChart, {
-                series: {
-                    pie: {
-                        show: true,
-                        stroke: {
-                            width: 0
-                        }
-                    }
-                },
-                legend: {
-                    show: false
-                }, grid: {
-                    hoverable: true,
-                    clickable: true
-                }
-
-            });
-            // cellPaiChart End
-            // Line Chart  #flotLine5
-            var newCust = [[0, 3], [1, 5], [2, 4], [3, 7], [4, 9], [5, 3], [6, 6], [7, 4], [8, 10]];
-
-            var plot = $.plot($('#flotLine5'), [{
-                    data: newCust,
-                    label: 'New Data Flow',
-                    color: '#fff'
-                }],
-                    {
-                        series: {
-                            lines: {
-                                show: true,
-                                lineColor: '#fff',
-                                lineWidth: 2
-                            },
-                            points: {
-                                show: true,
-                                fill: true,
-                                fillColor: "#ffffff ",
-                                symbol: "circle ",
-                                radius: 3
-                            },
-                            shadowSize: 0
-                        },
-                        points: {
-                            show: true,
-                        },
-                        legend: {
-                            show: false
-                        },
-                        grid: {
-                            show: false
-                        }
-                    });
-            // Line Chart  #flotLine5 End
             // Traffic Chart using chartist
             if ($('#traffic-chart').length) {
                 var chart = new Chartist.Line('#traffic-chart', {

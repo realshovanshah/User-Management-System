@@ -85,12 +85,12 @@
 
         <tfoot>
             <tr>
-                <th>Name</th>
-                <th>Position</th>
-                <th>Office</th>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Email Address</th>
+                <th>Gender</th>
                 <th>Age</th>
-                <th>Start date</th>
-                <th>Salary</th>
+                <th>Date Created</th>
             </tr>
         </tfoot>
     </table>
