@@ -64,23 +64,6 @@
 
                                 <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
                                     <li><a href="#home-section" class="nav-link">Home</a></li>
-                                    <!--                <li class="has-children">
-                                                      <a href="#about-section" class="nav-link">About Us</a>
-                                                      <ul class="dropdown">
-                                                        <li><a href="#team-section" class="nav-link">Team</a></li>
-                                                        <li><a href="#pricing-section" class="nav-link">Pricing</a></li>
-                                                        <li><a href="#faq-section" class="nav-link">FAQ</a></li>
-                                                        <li class="has-children">
-                                                          <a href="#">More Links</a>
-                                                          <ul class="dropdown">
-                                                            <li><a href="#">Menu One</a></li>
-                                                            <li><a href="#">Menu Two</a></li>
-                                                            <li><a href="#">Menu Three</a></li>
-                                                          </ul>
-                                                        </li>
-                                                      </ul>
-                                                    </li>-->
-
                                     <li><a href="#about-section" class="nav-link">About Us</a></li>
                                     <li><a href="register.jsp" class="nav-link">Register</a></li>
                                     <li><a href="login.jsp" class="nav-link">Login</a></li>
@@ -96,7 +79,6 @@
                 </div>
 
             </header>
-
 
 
             <div class="site-blocks-cover overlay" style="background-image: url(hero_1.jpg);" data-aos="fade" id="home-section">

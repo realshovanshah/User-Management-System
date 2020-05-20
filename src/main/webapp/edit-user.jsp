@@ -119,7 +119,7 @@
                                                     </div>
                                                     <div class="row">
                                                         <div class="col d-flex justify-content-end">
-                                                            <button class="btn btn-primary" type="submit">Add User</button>
+                                                            <button class="btn btn-primary" type="submit">Done</button>
                                                         </div>
                                                     </div>
                                                 </form>

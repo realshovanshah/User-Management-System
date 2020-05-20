@@ -94,11 +94,11 @@ String email = (String) session.getAttribute("email");
                             <a href="dashboard.jsp"><i class="menu-icon fa fa-laptop "></i>Dashboard </a>
                         </li>
                         <li class=" dropdown ">
-                            <a href="#" class="dropdown-toggle " data-toggle="dropdown " aria-haspopup="true " aria-expanded="false "> <i class="menu-icon fa fa-cogs "></i>About</a>
+                            <a href="about_us.jsp" class="dropdown-toggle " data-toggle="dropdown " aria-haspopup="true " aria-expanded="false "> <i class="menu-icon fa fa-cogs "></i>About</a>
 
                         </li>
                         <li class=" dropdown ">
-                            <a href="#" class="dropdown-toggle " data-toggle="dropdown " aria-haspopup="true " aria-expanded="false "> <i class="menu-icon fa fa-table "></i>Contact</a>
+                            <a href="contact.jsp" class="dropdown-toggle " data-toggle="dropdown " aria-haspopup="true " aria-expanded="false "> <i class="menu-icon fa fa-table "></i>Contact</a>
                             <ul class="sub-menu children dropdown-menu ">
                                 <li><i class="fa fa-table "></i><a href="userlists.jsp ">User Table</a></li>
                                 <li><i class="fa fa-table "></i><a href="edituser.jsp ">User edit</a></li>
@@ -155,7 +155,7 @@ String email = (String) session.getAttribute("email");
                         </li>
                         <%}else{%>
                         <div class="alert alert-info" role="alert" style="margin-left:30px;" data-toggle="dropdown ">
-                             Admin Rights Required
+                             Admin Access Only!
                             </div>
                         <%}
                         %>
