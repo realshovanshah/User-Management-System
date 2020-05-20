@@ -19,7 +19,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Shah Jr
  */
-@WebServlet(name = "UnblockUser", urlPatterns = {"/UnblockUser"})
+@WebServlet(name = "UnblockUser", urlPatterns = {"/unblock"})
 public class UnblockUser extends HttpServlet {
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -42,9 +42,9 @@ public class UnblockUser extends HttpServlet {
         try {
             dao.unblockUser(id);
 
-            session.setAttribute("blocked", "The user has been unblocked.");
+            session.setAttribute("unblocked", "The user has been unblocked.");
 
-            response.sendRedirect("dashboard.jsp");
+            response.sendRedirect("manage-user.jsp");
 
         } catch (Exception e) {
             e.printStackTrace();

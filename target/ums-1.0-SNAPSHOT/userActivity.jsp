@@ -25,12 +25,26 @@
 
 <body>
     <%@include file="navbar.jsp" %>
+    <div class="breadcrumbs" style="margin-bottom:30px;">
+            <div class="breadcrumbs-inner">
+                <div class="row m-0">
+                    <div class="col-sm-4">
+                        <div class="page-header float-left">
+                            <div class="page-title">
+                                <h1>User Activity</h1>
+                            </div>
+                        </div>
+                    </div>
 
+                </div>
+            </div>
+        </div>
+        <br>
     <!--User Activity-->
     <main>
-        <h1>User Activity</h1>
+        <label>.</label>
         <div style="max-height:900px; overflow: auto;">
-            <table class="table table-striped">
+            <table class="table table-striped" style="width:95.7%; margin-left:29px;">
                 <thead>
                     <tr>
                         <th>S/N</th>
@@ -47,7 +61,6 @@
                                 + "on user.id=history_log.h_id;";
                         PreparedStatement pstmt = conn.prepareStatement(sql);
                         ResultSet rs = pstmt.executeQuery();
-                        String email = request.getParameter("email");
                         int counter = 0;
                         while (rs.next()) {
                             counter++;%>

@@ -5,7 +5,17 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%Integer uid = (Integer) session.getAttribute("id");%>
+<%Integer uid = (Integer) session.getAttribute("id");
+String email = (String) session.getAttribute("email");
+    String password = (String) session.getAttribute("password");
+    String age = (String) session.getAttribute("age");
+    String gender = (String) session.getAttribute("phone");
+    String fname = (String) session.getAttribute("fname");
+    String lname = (String) session.getAttribute("lname");
+    Integer is_admin = (Integer) session.getAttribute("is_admin");
+    
+%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -115,8 +125,8 @@
                         <li class="menu-item-has-children dropdown">
                             <a href="#" class="dropdown-toggle"  data-toggle="dropdown"  aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Profile</a>
                             <ul class="sub-menu children dropdown-menu ">
-                                <li><i class="menu-icon fa fa-fort-awesome "></i><a href="view-profile.jsp">View Profile</a></li>
-                                <li><i class="menu-icon ti-themify-logo "></i><a href="editUser?id=<%= uid%>">Edit Profile</a></li>
+                                <li><i class="menu-icon fa fa-fort-awesome "></i><a href="view-profile.jsp?id=<%= uid%>">View Profile</a></li>
+                                <li><i class="menu-icon ti-themify-logo "></i><a href="showUser?id=<%= uid%>">Edit Profile</a></li>
                             </ul>
                         </li>
 
@@ -125,7 +135,11 @@
                             <a href="#" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-area-chart"></i>History</a>
 
                         </li>
+                        
                         <li class="menu-title">Admin</li><!-- /.menu-title -->
+                        <%
+                            if(is_admin==1){
+                        %>
                         <li class="menu-item-has-children dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Manage</a>
                             <ul class="sub-menu children dropdown-menu ">
@@ -139,6 +153,12 @@
                         <li class="menu-item-has-children dropdown ">
                             <a href="user-list.jsp" class="dropdown-toggle " data-toggle="dropdown " aria-haspopup="true " aria-expanded="false "> <i class="menu-icon fa fa-table "></i>User List</a>
                         </li>
+                        <%}else{%>
+                        <div class="alert alert-info" role="alert" style="margin-left:30px;" data-toggle="dropdown ">
+                             Admin Rights Required
+                            </div>
+                        <%}
+                        %>
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->
@@ -174,7 +194,7 @@
                             </a>
 
                             <div class="user-menu dropdown-menu">
-                                <a class="nav-link" href="#"><i class="fa fa- user"></i>My Profile</a>
+                                <a class="nav-link" href="view-profile.jsp?id=<%= uid%>"><i class="fa fa- user"></i>My Profile</a>
 
                                 <a class="nav-link" href="#"><i class="fa fa -cog"></i>Settings</a>
 

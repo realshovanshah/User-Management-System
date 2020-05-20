@@ -93,15 +93,26 @@
                             </div>
 
                             <div class="cell">
-                                <a href="editUser?id=<%=rs.getString("id")%>" style="text-decoration: none; color: blue;">Edit</a>
+                                <a href="showUser?id=<%=rs.getString("id")%>" style="text-decoration: none; color: blue;">Edit</a>
                             </div>
                             <div class="cell">
                                 <a href="delete?id=<%=rs.getString("id")%>" style="text-decoration: none; color: red;">Delete</a>
                             </div>
-
+                                <%
+                                    if(rs.getInt("is_blocked")==0){
+                                %>
                             <div class="cell">
                                 <a href="block?id=<%=rs.getString("id")%>" style="text-decoration: none; color: red;">Block</a>
                             </div>
+                            <%
+                                }else{
+                            %>
+                            <div class="cell">
+                                <a href="unblock?id=<%=rs.getString("id")%>" style="text-decoration: none; color: red;">Unblock</a>
+                            </div>
+                            <%
+                                }
+                            %>
                         </div>
                         <%
                                 }

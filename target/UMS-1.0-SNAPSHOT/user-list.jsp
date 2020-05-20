@@ -1,3 +1,4 @@
+
 <!doctype html>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.sql.DriverManager"%>
@@ -30,7 +31,7 @@
                 <div class="col-sm-4">
                     <div class="page-header float-left">
                         <div class="page-title">
-                            <h1>Dashboard</h1>
+                            <h1>User List</h1>
                         </div>
                     </div>
                 </div>

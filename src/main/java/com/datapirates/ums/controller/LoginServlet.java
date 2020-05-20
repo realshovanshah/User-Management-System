@@ -57,7 +57,14 @@ public class LoginServlet extends HttpServlet {
               session.setAttribute("isLoggedIn", "true");
               session.setAttribute("user", auth);
               session.setAttribute("id", auth.getId());
-              Connection con = DBConnection.getConnection();
+              session.setAttribute("fname", auth.getFname());
+                session.setAttribute("lname", auth.getLname());
+                session.setAttribute("email", auth.getEmail());
+                session.setAttribute("gender", auth.getGender());
+                session.setAttribute("password", auth.getPassword());
+                session.setAttribute("age", auth.getAge());
+                session.setAttribute("is_admin", auth.getIs_admin());
+          Connection con = DBConnection.getConnection();
 
                 String sql = "INSERT INTO history_log (id, login_time, login_date) values(?, ?, ?);";
 

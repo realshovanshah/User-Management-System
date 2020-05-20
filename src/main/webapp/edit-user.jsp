@@ -47,8 +47,8 @@
                                                             <div class="row">
                                                                 <div class="col">
                                                                     <div class="form-group">
-                                                                        <label>ID</label>
-                                                                        <input type="" name="id" value="<%= user.getId()%>">
+                                                                        <label></label>
+                                                                        <input type="hidden" name="id" value="<%= user.getId()%>">
                                                                         <label>First Name</label>                                                                        
                                                                         <input class="form-control" type="text" name="fname" value="<%= user.getFname() %>">
                                                                     </div>
