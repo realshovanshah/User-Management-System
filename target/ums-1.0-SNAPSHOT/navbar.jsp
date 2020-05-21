@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <%Integer uid = (Integer) session.getAttribute("id");
 String email = (String) session.getAttribute("email");
     String password = (String) session.getAttribute("password");
@@ -132,7 +133,7 @@ String email = (String) session.getAttribute("email");
 
 
                         <li class="menu-item-has-children dropdown">
-                            <a href="#" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-area-chart"></i>History</a>
+                            <a href="user_history.jsp" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-area-chart"></i>History</a>
 
                         </li>
                         
