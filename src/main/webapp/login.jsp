@@ -43,7 +43,7 @@
                                                 <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password">
                                                 <label for="inputEmail" value="password">Password</label>
                                             </div>
-                                            <p id="msg" style="color: red">${param.msg}</p>
+                                            <div class="text-center  mb-3"><p id="msg" style="color: red">${param.msg}</p></div>
                                             <div class="text-center  mb-3">
                                                 <a href="verifyEmail.jsp">Forgot Password?</a>
                                             </div>

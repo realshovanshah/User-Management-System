@@ -44,7 +44,8 @@ a, a:hover {
   padding-top: 100px;
   display: flex;
   display: flex;
-  background-image: linear-gradient(-20deg, #c75eff 20%, #03b1f3 100%);
+  background: #03a9f35c;
+  /*background-image: linear-gradient(-20deg, #c75eff 20%, #03b1f3 100%);*/
 }
 @media screen and (max-width: 768px) {
   .wrapper {
@@ -87,7 +88,7 @@ a, a:hover {
   overflow: hidden;
   position: relative;
   z-index: 4;
-  box-shadow: 0px 5px 50px 0px #6c44fc, 0px 0px 0px 7px rgba(107, 74, 255, 0.5);
+  box-shadow: 0px 5px 50px 0px #03a9f3, 0px 0px 0px 7px rgba(107, 74, 255, 0.5);
 }
 @media screen and (max-width: 576px) {
   .profile-card__img {
@@ -112,7 +113,7 @@ a, a:hover {
 .profile-card__name {
   font-weight: 700;
   font-size: 24px;
-  color: #6944ff;
+  color: #000;
   margin-bottom: 15px;
 }
 .profile-card__txt {
