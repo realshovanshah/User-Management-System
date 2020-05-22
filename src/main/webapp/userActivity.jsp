@@ -49,8 +49,8 @@
                     <tr>
                         <th>S/N</th>
                         <th>Email Address</th>
-                        <th>Login Time</th>
-                        <th>Login on</th>
+                        <th>Time</th>
+                        <th>Last online on</th>
                     </tr>
                 </thead>
                 <tbody>

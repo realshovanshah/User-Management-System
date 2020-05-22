@@ -27,7 +27,6 @@ import javax.servlet.http.HttpSession;
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
 
-   
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -39,32 +38,31 @@ public class LoginServlet extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        
+
     }
 
-   
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try{
+        try {
             HttpSession session = request.getSession();
             String email = request.getParameter("email");
             String password = request.getParameter("password");
-            
-            User auth = UserDao.validateUser(email,password);
-            
-            if(auth != null){
-              session.setAttribute("isLoggedIn", "true");
-              session.setAttribute("user", auth);
-              session.setAttribute("id", auth.getId());
-              session.setAttribute("fname", auth.getFname());
+
+            User auth = UserDao.validateUser(email, password);
+
+            if (auth != null) {
+                session.setAttribute("isLoggedIn", "true");
+                session.setAttribute("user", auth);
+                session.setAttribute("id", auth.getId());
+                session.setAttribute("fname", auth.getFname());
                 session.setAttribute("lname", auth.getLname());
                 session.setAttribute("email", auth.getEmail());
                 session.setAttribute("gender", auth.getGender());
                 session.setAttribute("password", auth.getPassword());
                 session.setAttribute("age", auth.getAge());
                 session.setAttribute("is_admin", auth.getIs_admin());
-          Connection con = DBConnection.getConnection();
+                Connection con = DBConnection.getConnection();
 
                 String sql = "INSERT INTO history_log (id, login_time, login_date) values(?, ?, ?);";
 
@@ -76,16 +74,14 @@ public class LoginServlet extends HttpServlet {
                 con.close();
 
                 ps.close();
-                    
-              response.sendRedirect("dashboard.jsp");
-              
+
+                response.sendRedirect("dashboard.jsp");
+
+            } else {
+                response.sendRedirect("login.jsp?msg=You have entered invalid email or password.");
             }
-            else{
-                response.sendRedirect("login.jsp");
-            }
-            
-            
-        }catch(Exception e){
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
