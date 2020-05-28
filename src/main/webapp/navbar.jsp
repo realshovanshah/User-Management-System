@@ -15,6 +15,7 @@ String email = (String) session.getAttribute("email");
     String lname = (String) session.getAttribute("lname");
     Integer is_admin = (Integer) session.getAttribute("is_admin");
     
+    Integer totalVisits = (Integer)session.getAttribute("totalVisits");
 %>
 
 <!DOCTYPE html>

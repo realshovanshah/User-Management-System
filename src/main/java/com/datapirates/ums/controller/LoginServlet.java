@@ -8,6 +8,9 @@ package com.datapirates.ums.controller;
 import com.datapirates.ums.dao.UserDao;
 import com.datapirates.ums.model.User;
 import com.datapirates.ums.utils.DBConnection;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -45,7 +48,7 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            HttpSession session = request.getSession();
+            HttpSession session = request.getSession(true);
             String email = request.getParameter("email");
             String password = request.getParameter("password");
 

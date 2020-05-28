@@ -8,6 +8,7 @@ D:\Users\Shah Jr\Current\UMS\src\main\java\com\datapirates\ums\controller\UserDe
 D:\Users\Shah Jr\Current\UMS\src\main\java\com\datapirates\ums\controller\RegisterServlet.java
 D:\Users\Shah Jr\Current\UMS\src\main\java\com\datapirates\ums\utils\DBConnection.java
 D:\Users\Shah Jr\Current\UMS\src\main\java\com\datapirates\ums\controller\LogoutServlet.java
+D:\Users\Shah Jr\Current\UMS\src\main\java\com\datapirates\ums\controller\SessionCounter.java
 D:\Users\Shah Jr\Current\UMS\src\main\java\com\datapirates\ums\model\User.java
 D:\Users\Shah Jr\Current\UMS\src\main\java\com\datapirates\ums\controller\LoginServlet.java
 D:\Users\Shah Jr\Current\UMS\src\main\java\com\datapirates\ums\dao\UserDao.java

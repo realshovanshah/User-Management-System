@@ -1,5 +1,11 @@
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.Connection"%>
 <!doctype html>
 
+
+<%@page import="com.datapirates.ums.controller.SessionCounter"%>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -35,7 +41,7 @@
                                 </div>
                                 <div class="stat-content ">
                                     <div class="text-left dib ">
-                                        <div class="stat-text "><span class="count ">154</span></div>
+                                        <div class="stat-text "><span class="count "><%=totalVisits%></span></div>
                                         <div class="stat-heading ">No. of visits</div>
                                     </div>
                                 </div>
@@ -53,8 +59,8 @@
                                 </div>
                                 <div class="stat-content ">
                                     <div class="text-left dib ">
-                                        <div class="stat-text "><span class="count ">5</span></div>
-                                        <div class="stat-heading ">Blocked Users</div>
+                                        <div class="stat-text "><span class="count"> <%= SessionCounter.getTotalActiveSession()%></span></div>
+                                        <div class="stat-heading ">Active Users</div>  
                                     </div>
                                 </div>
                             </div>
@@ -71,7 +77,31 @@
                                 </div>
                                 <div class="stat-content ">
                                     <div class="text-left dib ">
-                                        <div class="stat-text "><span class="count ">3</span></div>
+                                        <div class="stat-text "><span class="count ">
+                                            <%
+                            try {
+                                Class.forName("com.mysql.jdbc.Driver");
+                                Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/ums?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "");
+                                String sql = "Select * from user where is_admin=1";
+                                Statement stmt = conn.createStatement();
+                                ResultSet rs = stmt.executeQuery(sql);
+                                int totalAdmins = 0;
+                                while (rs.next()) {                                   
+                                    totalAdmins = totalAdmins+1;
+                                }
+                        %>
+                            <%=totalAdmins%>
+                        <%
+
+                            } catch (ClassNotFoundException e) {
+                                out.println("Exception: " + e.getMessage());
+                                e.printStackTrace();
+
+                            }
+
+
+                        %>
+                                            </span></div>
                                         <div class="stat-heading ">Admins</div>
                                     </div>
                                 </div>
@@ -89,7 +119,31 @@
                                 </div>
                                 <div class="stat-content ">
                                     <div class="text-left dib ">
-                                        <div class="stat-text "><span class="count ">28</span></div>
+                                                <div class="stat-text "><span class="count ">
+                                            <%
+                            try {
+                                Class.forName("com.mysql.jdbc.Driver");
+                                Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/ums?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "");
+                                String sql = "Select * from user where is_admin=0";
+                                Statement stmt = conn.createStatement();
+                                ResultSet rs = stmt.executeQuery(sql);
+                                int totalClients = 0;
+                                while (rs.next()) {                                   
+                                    totalClients = totalClients+1;
+                                }
+                        %>
+                            <%=totalClients%>
+                        <%
+
+                            } catch (ClassNotFoundException e) {
+                                out.println("Exception: " + e.getMessage());
+                                e.printStackTrace();
+
+                            }
+
+
+                        %>
+                                            </span></div>
                                         <div class="stat-heading ">Clients</div>
                                     </div>
                                 </div>
