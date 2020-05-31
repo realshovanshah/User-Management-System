@@ -41,7 +41,14 @@
                                 </div>
                                 <div class="stat-content ">
                                     <div class="text-left dib ">
-                                        <div class="stat-text "><span class="count "><%=totalVisits%></span></div>
+                                        <div class="stat-text "><span class="count "><%!
+                                                int i = 127;
+                                                %>
+                                                <%
+                                                    i++;
+                                                    out.println(i);
+                                                %>
+                                            </span></div>
                                         <div class="stat-heading ">No. of visits</div>
                                     </div>
                                 </div>
@@ -79,13 +86,13 @@
                                     <div class="text-left dib ">
                                         <div class="stat-text "><span class="count ">
                                             <%
+                            int totalAdmins = 0;
                             try {
                                 Class.forName("com.mysql.jdbc.Driver");
                                 Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/ums?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "");
                                 String sql = "Select * from user where is_admin=1";
                                 Statement stmt = conn.createStatement();
                                 ResultSet rs = stmt.executeQuery(sql);
-                                int totalAdmins = 0;
                                 while (rs.next()) {                                   
                                     totalAdmins = totalAdmins+1;
                                 }
@@ -121,7 +128,6 @@
                                     <div class="text-left dib ">
                                                 <div class="stat-text "><span class="count ">
                                             <%
-                            try {
                                 Class.forName("com.mysql.jdbc.Driver");
                                 Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/ums?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "");
                                 String sql = "Select * from user where is_admin=0";
@@ -129,20 +135,10 @@
                                 ResultSet rs = stmt.executeQuery(sql);
                                 int totalClients = 0;
                                 while (rs.next()) {                                   
-                                    totalClients = totalClients+1;
+                                    totalClients++;
                                 }
                         %>
                             <%=totalClients%>
-                        <%
-
-                            } catch (ClassNotFoundException e) {
-                                out.println("Exception: " + e.getMessage());
-                                e.printStackTrace();
-
-                            }
-
-
-                        %>
                                             </span></div>
                                         <div class="stat-heading ">Clients</div>
                                     </div>
@@ -171,28 +167,28 @@
                                 <div class="card-body">
                                     <div class="progress-box progress-1">
                                         <h4 class="por-title">Visits</h4>
-                                        <div class="por-txt">96,930 Users (40%)</div>
+                                        <div class="por-txt"> <%=i%> Users (40%)</div>
                                         <div class="progress mb-2" style="height: 5px;">
                                             <div class="progress-bar bg-flat-color-1" role="progressbar" style="width: 40%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>
                                     </div>
                                     <div class="progress-box progress-2">
-                                        <h4 class="por-title">Blocked Users</h4>
-                                        <div class="por-txt">3,220 Users (24%)</div>
+                                        <h4 class="por-title">Active Users</h4>
+                                        <div class="por-txt"><%= SessionCounter.getTotalActiveSession()%> Users (24%)</div>
                                         <div class="progress mb-2" style="height: 5px;">
                                             <div class="progress-bar bg-flat-color-2" role="progressbar" style="width: 24%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>
                                     </div>
                                     <div class="progress-box progress-2">
                                         <h4 class="por-title">Admins</h4>
-                                        <div class="por-txt">29,658 Users (60%)</div>
+                                        <div class="por-txt"><%=totalAdmins%> Users (60%)</div>
                                         <div class="progress mb-2" style="height: 5px;">
                                             <div class="progress-bar bg-flat-color-3" role="progressbar" style="width: 60%;" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>
                                     </div>
                                     <div class="progress-box progress-2">
                                         <h4 class="por-title">Clients</h4>
-                                        <div class="por-txt">99,658 Users (90%)</div>
+                                        <div class="por-txt"><%=totalClients%> Users (90%)</div>
                                         <div class="progress mb-2" style="height: 5px;">
                                             <div class="progress-bar bg-flat-color-4" role="progressbar" style="width: 90%;" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>

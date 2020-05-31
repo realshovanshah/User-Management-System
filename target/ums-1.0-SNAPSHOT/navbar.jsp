@@ -15,7 +15,7 @@ String email = (String) session.getAttribute("email");
     String lname = (String) session.getAttribute("lname");
     Integer is_admin = (Integer) session.getAttribute("is_admin");
     
-    Integer totalVisits = (Integer)session.getAttribute("totalVisits");
+    //Integer totalVisits = (Integer)session.getAttribute("totalVisits");
 %>
 
 <!DOCTYPE html>
@@ -181,11 +181,12 @@ String email = (String) session.getAttribute("email");
                     <div class="header-menu">
                         <div class="header-left">
                             <button class="search-trigger"><i class="fa fa-search"></i></button>
-                            <div class="form-inline">
-                                <form class="search-form">
-                                    <input class="form-control mr-sm-2" type="text" placeholder="Search ..." aria-label="Search">
-                                    <button class="search-close" type="submit"><i class="fa fa-close"></i></button>
+                            <div class="form-inline" style="margin-top:55px; margin-left:280px; height: 62px">
+                                <form method="GET" class="search-form">
+                                    <input class="form-control mr-sm-2" type="text" name="q" placeholder="Search ..." aria-label="Search"/>
+                                    
                                 </form>
+                                <!--<button class="search-close" ><i class="fa fa-close"></i></button>-->
                             </div>
 
                         </div>

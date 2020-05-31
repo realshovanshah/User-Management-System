@@ -146,7 +146,14 @@
                     <table cellpadding="0" cellspacing="0" border="0">
                         <thead>
                             <tr>
-                                <th style="text-align:center">Manage User</th>
+                                <th style="text-align:center">
+                                    <div class="row" style="background-color: transparent">
+                                        <div class="col" style="margin-left: 450px">Manage User</div>
+                                        <div class="col">
+                                        <button class="search-trigger" style="line-height: 0; padding-left:260px"><i class="fa fa-search"></i></button>
+                                        </div>
+                                    </div>    
+                                </th>   
                             </tr>
                         </thead>
                     </table>
@@ -158,7 +165,13 @@
                             try {
                                 Class.forName("com.mysql.jdbc.Driver");
                                 Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/ums?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "");
-                                String sql = "Select * from user";
+                                String query = request.getParameter("q");
+                                String sql = "";
+                                if(query!=null){
+                                    sql = "Select * from user where fname like '%"+query+"%' or lname like '%"+query+"%'";
+                                }else{
+                                    sql = "Select * from user";
+                                }                                
                                 Statement stmt = conn.createStatement();
                                 ResultSet rs = stmt.executeQuery(sql);
                                 while (rs.next()) {

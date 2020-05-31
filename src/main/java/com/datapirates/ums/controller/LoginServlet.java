@@ -8,14 +8,12 @@ package com.datapirates.ums.controller;
 import com.datapirates.ums.dao.UserDao;
 import com.datapirates.ums.model.User;
 import com.datapirates.ums.utils.DBConnection;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -53,7 +51,7 @@ public class LoginServlet extends HttpServlet {
             String password = request.getParameter("password");
 
             User auth = UserDao.validateUser(email, password);
-
+            
             if (auth != null) {
                 session.setAttribute("isLoggedIn", "true");
                 session.setAttribute("user", auth);
@@ -79,6 +77,9 @@ public class LoginServlet extends HttpServlet {
                 ps.close();
 
                 response.sendRedirect("dashboard.jsp");
+//                File counterFile = new File("counter.txt");
+//                BufferedReader reader= new BufferedReader(new FileReader(counterFile));;
+//                int totalVisits = Integer.parseInt(reader.readLine());
 
             } else {
                 response.sendRedirect("login.jsp?msg=You have entered invalid email or password.");
