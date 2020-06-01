@@ -13,5 +13,6 @@ D:\Users\Shah Jr\Current\UMS\src\main\java\com\datapirates\ums\model\User.java
 D:\Users\Shah Jr\Current\UMS\src\main\java\com\datapirates\ums\controller\LoginServlet.java
 D:\Users\Shah Jr\Current\UMS\src\main\java\com\datapirates\ums\dao\UserDao.java
 D:\Users\Shah Jr\Current\UMS\src\main\java\com\datapirates\ums\controller\AddUserServlet.java
+D:\Users\Shah Jr\Current\UMS\src\main\java\com\datapirates\ums\dao\HistoryDao.java
 D:\Users\Shah Jr\Current\UMS\src\main\java\com\datapirates\ums\controller\DeleteServlet.java
 D:\Users\Shah Jr\Current\UMS\src\main\java\com\datapirates\ums\controller\UpdateUserServlet.java

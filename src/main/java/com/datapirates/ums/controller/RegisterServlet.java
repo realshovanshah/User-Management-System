@@ -6,6 +6,7 @@ package com.datapirates.ums.controller;
  * and open the template in the editor.
  */
 
+import com.datapirates.ums.dao.HistoryDao;
 import com.datapirates.ums.dao.UserDao;
 import com.datapirates.ums.model.User;
 import java.io.IOException;
@@ -40,7 +41,6 @@ public class RegisterServlet extends HttpServlet {
             user.setPassword(password);
             
             UserDao.register(user);
-            
             response.sendRedirect("login.jsp");
 
         } catch (Exception e) {

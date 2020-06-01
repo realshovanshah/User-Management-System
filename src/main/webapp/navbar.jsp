@@ -134,7 +134,7 @@ String email = (String) session.getAttribute("email");
 
 
                         <li class="menu-item-has-children dropdown">
-                            <a href="userActivity.jsp" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-area-chart"></i>Activity</a>
+                            <a href="userActivity.jsp" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-area-chart"></i>History</a>
 
                         </li>
                         
@@ -150,7 +150,10 @@ String email = (String) session.getAttribute("email");
                             </ul>
                         </li>
                         <li>
-                            <a href="user_history.jsp"> <i class="menu-icon ti-email "></i>User's history </a>
+                            <a href="user_activity.jsp"> <i class="menu-icon fa fa-area-chart "></i>Report </a>
+                        </li>
+                        <li>
+                            <a href="user_activity.jsp"> <i class="menu-icon ti-email "></i>User Activity </a>
                         </li>
                         <li class="menu-item-has-children dropdown ">
                             <a href="user-list.jsp" class="dropdown-toggle " data-toggle="dropdown " aria-haspopup="true " aria-expanded="false "> <i class="menu-icon fa fa-table "></i>User List</a>

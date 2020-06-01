@@ -5,6 +5,7 @@
  */
 package com.datapirates.ums.controller;
 
+import com.datapirates.ums.dao.HistoryDao;
 import com.datapirates.ums.dao.UserDao;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -35,7 +36,8 @@ public class UnblockUser extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
-
+        String fname = request.getParameter("fname");
+        String lname = request.getParameter("lname");
         UserDao dao = new UserDao();
 
         HttpSession session = request.getSession();
@@ -43,7 +45,9 @@ public class UnblockUser extends HttpServlet {
             dao.unblockUser(id);
 
             session.setAttribute("unblocked", "The user has been unblocked.");
-
+            int uid = (Integer) session.getAttribute("id");
+            HistoryDao history = new HistoryDao();
+            history.userHistory(uid, "Unblocked User "+ fname +" " + lname);
             response.sendRedirect("manage-user.jsp");
 
         } catch (Exception e) {

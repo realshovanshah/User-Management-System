@@ -6,6 +6,7 @@ package com.datapirates.ums.controller;
  * and open the template in the editor.
  */
 
+import com.datapirates.ums.dao.HistoryDao;
 import com.datapirates.ums.dao.UserDao;
 import com.datapirates.ums.model.User;
 import java.io.IOException;
@@ -47,6 +48,9 @@ public class AddUserServlet extends HttpServlet {
             user.setIs_admin(is_admin);
             
             UserDao.addUser(user);
+            int id = (Integer) session.getAttribute("id");  
+            HistoryDao history = new HistoryDao();
+            history.userHistory(id, "Added a new user, "+ fName +" "+ lName);
             
             response.sendRedirect("demoTable.jsp");
 

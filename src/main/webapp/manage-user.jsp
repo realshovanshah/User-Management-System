@@ -184,20 +184,20 @@
                                     if(rs.getInt("is_blocked")==0){
                                 %>
                             <td>
-                                <a href="block?id=<%=rs.getString("id")%>" style=" color: #fff;">Block</a>
+                                <a href="block?id=<%=rs.getString("id")%>&fname=<%=rs.getString("fname")%>&lname=<%=rs.getString("lname")%>" style=" color: #fff;">Block</a>
                             </td>
                             <%
                                 }else{
                             %>
                             <td>
-                                <a href="unblock?id=<%=rs.getString("id")%>" style="text-decoration: underline; color: #fff;">Unblock</a>
+                                <a href="unblock?id=<%=rs.getString("id")%>&fname=<%=rs.getString("fname")%>&lname=<%=rs.getString("lname")%>" style="text-decoration: underline; color: #fff;">Unblock</a>
                             </td>
                             <%
                                 }
                             %>
-                                <td><a href="showUser?id=<%=rs.getString("id")%>" style="color: #00a1ff;">Edit</a></td>
+                                <td><a href="showUser?id=<%=rs.getString("id")%>&fname=<%=rs.getString("fname")%>&lname=<%=rs.getString("lname")%>" style="color: #00a1ff;">Edit</a></td>
                              
-                                <td><a href="delete?id=<%=rs.getString("id")%>" style="color: #ff5656;">Delete</a></td>
+                                <td><a href="delete?id=<%=rs.getString("id")%>&fname=<%=rs.getString("fname")%>&lname=<%=rs.getString("lname")%>" style="color: #ff5656;">Delete</a></td>
                                 
                             </tr>
                             <%

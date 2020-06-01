@@ -6,6 +6,7 @@ package com.datapirates.ums.controller;
  * and open the template in the editor.
  */
 
+import com.datapirates.ums.dao.HistoryDao;
 import com.datapirates.ums.dao.UserDao;
 import com.datapirates.ums.model.User;
 import java.io.IOException;
@@ -49,6 +50,13 @@ public class UpdateUserServlet extends HttpServlet {
             user.setId(Integer.parseInt(id));
             
             UserDao.updateUser(user);
+            
+            String fname = request.getParameter("fname");
+            String lname = request.getParameter("lname");
+        
+            int uid = (Integer) session.getAttribute("id");
+            HistoryDao history = new HistoryDao();
+            history.userHistory(uid, "Updated User "+ fname +" " + lname);
             
             response.sendRedirect("dashboard.jsp");
 

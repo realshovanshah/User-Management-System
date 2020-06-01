@@ -5,7 +5,10 @@
  */
 package com.datapirates.ums.controller;
 
+import com.datapirates.ums.dao.HistoryDao;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,9 +25,17 @@ public class LogoutServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        session.invalidate();
         
+        HttpSession session = request.getSession();
+        
+        try {
+        int id = (Integer) session.getAttribute("id");
+        HistoryDao history = new HistoryDao();
+        history.userHistory(id, "Logged Out");
+        } catch (Exception ex) {
+            Logger.getLogger(LogoutServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        session.invalidate();
         response.sendRedirect("index.jsp");
     }
     

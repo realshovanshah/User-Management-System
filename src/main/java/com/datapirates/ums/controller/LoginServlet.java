@@ -5,6 +5,7 @@
  */
 package com.datapirates.ums.controller;
 
+import com.datapirates.ums.dao.HistoryDao;
 import com.datapirates.ums.dao.UserDao;
 import com.datapirates.ums.model.User;
 import com.datapirates.ums.utils.DBConnection;
@@ -63,18 +64,10 @@ public class LoginServlet extends HttpServlet {
                 session.setAttribute("password", auth.getPassword());
                 session.setAttribute("age", auth.getAge());
                 session.setAttribute("is_admin", auth.getIs_admin());
-                Connection con = DBConnection.getConnection();
-
-                String sql = "INSERT INTO history_log (id, login_time, login_date) values(?, ?, ?);";
-
-                PreparedStatement ps = con.prepareStatement(sql);
-                ps.setInt(1, auth.getId());
-                ps.setObject(2, java.sql.Time.valueOf(LocalTime.now()));
-                ps.setObject(3, LocalDate.now());
-                ps.execute();
-                con.close();
-
-                ps.close();
+                
+                int id = (Integer) session.getAttribute("id");
+                HistoryDao history = new HistoryDao();
+                history.userHistory(id, "Logged In");
 
                 response.sendRedirect("dashboard.jsp");
 //                File counterFile = new File("counter.txt");

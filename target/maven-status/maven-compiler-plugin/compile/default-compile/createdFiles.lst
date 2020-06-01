@@ -12,5 +12,6 @@ com\datapirates\ums\controller\RecoverPassword.class
 com\datapirates\ums\dao\UserDao.class
 com\datapirates\ums\controller\verifyEmail.class
 com\datapirates\ums\model\Contact.class
+com\datapirates\ums\dao\HistoryDao.class
 com\datapirates\ums\controller\UpdateUserServlet.class
 com\datapirates\ums\controller\SessionCounter.class

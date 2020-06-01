@@ -20,6 +20,10 @@
     
     <meta name="description" content="Ela Admin - HTML5 Admin Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+        <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
 </head>
 
 <body>
@@ -80,27 +84,11 @@
 
             }
 
-
         %>
 
-        <tfoot>
-            <tr>
-                <th>First name</th>
-                <th>Last name</th>
-                <th>Email Address</th>
-                <th>Gender</th>
-                <th>Age</th>
-                <th>Date Created</th>
-            </tr>
-        </tfoot>
     </table>
-    <!-- /.content -->
-    <div class="clearfix "></div>
+//         f
     <!-- Footer -->
     <%@include file="footer.jsp"%>
-    <!-- /.site-footer -->
-</div>
-<!-- /#right-panel -->
-
 </body>
 </html>
