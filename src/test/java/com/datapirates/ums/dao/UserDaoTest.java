@@ -27,45 +27,6 @@ public class UserDaoTest {
     }
 
     /**
-     * Test of register method, of class UserDao.
-     */
-    @org.junit.Test
-    public void testRegister1() throws Exception {
-        System.out.println("register");
-        User user = new User();
-        user.setFname("test");
-        user.setLname("test");            
-        user.setEmail("test@gmail.com");
-        user.setPassword("test123");
-        
-        UserDao.register(user);
-        
-        String expResult = "test";
-        String result = user.getFname();
-        
-        assertEquals(expResult, result);
-    }
-    
-//    @org.junit.Test
-//    public void testRegister2() throws Exception {
-//        System.out.println("register with existing user");
-//        User user = new User();
-//        user.setFname("test");
-//        user.setLname("test");            
-//        user.setEmail("test@gmail.com");
-//        user.setPassword("test123");
-//        
-//        UserDao.register(user);
-//        
-//        String expResult = "test";
-//        String result = user.getFname();
-//        
-//        assertEquals(expResult, result);
-//    }
-    
-    
-
-    /**
      * Test of validateUser method, of class UserDao.
      */
     @org.junit.Test
@@ -83,8 +44,8 @@ public class UserDaoTest {
     
     @org.junit.Test
     public void testValidateUser2() {
-        System.out.println("Validate User with incorrect details");
-        String email = "admin@gmail.com";
+        System.out.println("Validate User with incorrect email");
+        String email = "admin12@gmail.com";
         String password = "haha";
         User expResult = null;
         User result = UserDao.validateUser(email, password);
@@ -94,9 +55,9 @@ public class UserDaoTest {
     
     @org.junit.Test
     public void testValidateUser3() {
-        System.out.println("Validate User with email field empty");
-        String email = "";
-        String password = "admin";
+        System.out.println("Validate with blocked user");
+        String email = "haha@gmail.com";
+        String password = "haha";
         User expResult = null;
         User result = UserDao.validateUser(email, password);
         assertEquals(expResult, result);
@@ -105,7 +66,7 @@ public class UserDaoTest {
     
     @org.junit.Test
     public void testValidateUser4() {
-        System.out.println("Validate User with password field empty");
+        System.out.println("Validate User with empty fields");
         String email = "admin@gmail.com";
         String password = "";
         User expResult = null;
@@ -116,13 +77,115 @@ public class UserDaoTest {
     
     @org.junit.Test
     public void testValidateUser5() {
-        System.out.println("Validate User with both field empty");
-        String email = "";
-        String password = "";
+        System.out.println("Validate User with incorrect password");
+        String email = "haha@gmail.com";
+        String password = "253";
         User expResult = null;
         User result = UserDao.validateUser(email, password);
         assertEquals(expResult, result);
 //        fail("The test case is a prototype.");
+    }
+    
+        /**
+     * Test of updateUser method, of class UserDao.
+     */
+    @org.junit.Test
+    public void updateUser1() throws Exception {
+        System.out.println("Update User");
+        User user = new User();
+        user.setFname("test");
+        user.setLname("test");            
+        user.setEmail("test1@gmail.com");
+        user.setPassword("test123");
+        user.setAge("18");
+        user.setGender("Male");
+        user.setIs_admin(1);
+        user.setId(21);
+        
+        UserDao.updateUser(user);
+        
+        String expResult = "test1@gmail.com";
+        String result = user.getEmail();
+        
+        assertEquals(expResult, result);
+    }
+    @org.junit.Test
+    public void updateUser2() throws Exception {
+        System.out.println("Update User with empty email");
+        User user = new User();
+        user.setFname("test");
+        user.setLname("test");            
+        user.setEmail("");
+        user.setPassword("test123");
+        user.setAge("18");
+        user.setGender("Male");
+        user.setIs_admin(1);
+        user.setId(21);
+        
+        UserDao.updateUser(user);
+        
+        String expResult = "";
+        String result = user.getEmail();
+        
+        assertEquals(expResult, result);
+    }
+    @org.junit.Test
+    public void updateUser3() throws Exception {
+        System.out.println("Update User with existing email");
+        User user = new User();
+        user.setFname("test");
+        user.setLname("test");            
+        user.setEmail("haha@gmail.com");
+        user.setPassword("test123");
+        user.setAge("18");
+        user.setGender("Male");
+        user.setIs_admin(1);
+        user.setId(21);
+        
+        UserDao.updateUser(user);
+        
+        String expResult = "haha@gmail.com";
+        String result = user.getEmail();
+        
+        assertEquals(expResult, result);
+    }
+    @org.junit.Test
+    public void updateUser4() throws Exception {
+        System.out.println("Update User with no id");
+        User user = new User();
+        user.setFname("test");
+        user.setLname("test");            
+        user.setEmail("test@gmail.com");
+        user.setPassword("test123");
+        user.setAge("18");
+        user.setGender("Male");
+        user.setIs_admin(1);
+        UserDao.updateUser(user);
+         
+        int expResult = 0;
+        int result = user.getId();
+        
+        assertEquals(expResult, result);
+    }
+    @org.junit.Test
+    public void updateUser5() throws Exception {
+        System.out.println("Update User with existing id");
+        User user = new User();
+        user.setFname("test");
+        user.setLname("test");            
+        user.setEmail("test@gmail.com");
+        user.setPassword("test123");
+        user.setAge("18");
+        user.setGender("Male");
+        user.setIs_admin(1);
+        user.setId(20);
+        
+        UserDao.updateUser(user);
+        
+        int expResult = 20;
+        int result = user.getId();
+        
+        assertEquals(expResult, result);
     }
 
 

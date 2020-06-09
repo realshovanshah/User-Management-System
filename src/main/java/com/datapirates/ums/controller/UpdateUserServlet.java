@@ -24,6 +24,8 @@ import javax.servlet.http.HttpSession;
 @WebServlet("/updateUser")
 public class UpdateUserServlet extends HttpServlet {
 
+        //Gets parameters from user input field and sends to dao
+    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

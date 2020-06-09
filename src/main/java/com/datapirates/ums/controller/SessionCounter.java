@@ -12,6 +12,8 @@ import javax.servlet.http.HttpSessionListener;
  *
  * @author Shah Jr
  */
+
+//counts the no. of current sessions
 public class SessionCounter implements HttpSessionListener{
     
     private static int totalActiveSessions;

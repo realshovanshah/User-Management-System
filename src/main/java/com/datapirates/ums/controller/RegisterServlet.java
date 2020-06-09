@@ -23,6 +23,7 @@ import javax.servlet.http.HttpSession;
  */
 @WebServlet("/register")
 public class RegisterServlet extends HttpServlet {
+    //Gets parameters from user input field and sends to dao
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -34,14 +35,20 @@ public class RegisterServlet extends HttpServlet {
             String email = request.getParameter("email");
             String password = request.getParameter("password");
             
-            User user = new User();            
-            user.setFname(fName);
-            user.setLname(lName);            
-            user.setEmail(email);
-            user.setPassword(password);
+            if(password.length()>5){
+                User user = new User();            
+                user.setFname(fName);
+                user.setLname(lName);            
+                user.setEmail(email.toLowerCase());
+                user.setPassword(password);
             
-            UserDao.register(user);
+                UserDao.register(user);
             response.sendRedirect("login.jsp");
+            }else{
+                response.sendRedirect("register.jsp?msg=Password must be atleast 6 characters long.");
+            }
+            
+            
 
         } catch (Exception e) {
             session.setAttribute("error", "This user already exists.");

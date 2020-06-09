@@ -17,6 +17,7 @@ import java.time.LocalTime;
  * @author Shah Jr
  */
 public class HistoryDao {
+    //displays history of given user id
 
    public void userHistory(int id, String activity) throws Exception {
              

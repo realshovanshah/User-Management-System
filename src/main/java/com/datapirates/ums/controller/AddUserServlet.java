@@ -24,6 +24,7 @@ import javax.servlet.http.HttpSession;
 @WebServlet("/addUser")
 public class AddUserServlet extends HttpServlet {
 
+    //Gets parameters from user input field and sends to dao
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -37,6 +38,8 @@ public class AddUserServlet extends HttpServlet {
             String gender = request.getParameter("gender");
             int is_admin = Integer.parseInt(request.getParameter("is_admin"));        
                     
+            //create a new user with that value
+            
             User user = new User();    
             
             user.setFname(fName);

@@ -42,6 +42,7 @@ public class LoginServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
+    //Gets parameters from user input field and sends to dao
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -54,6 +55,7 @@ public class LoginServlet extends HttpServlet {
             User auth = UserDao.validateUser(email, password);
             
             if (auth != null) {
+                if(auth.getIs_blocked()==0){
                 session.setAttribute("isLoggedIn", "true");
                 session.setAttribute("user", auth);
                 session.setAttribute("id", auth.getId());
@@ -70,9 +72,9 @@ public class LoginServlet extends HttpServlet {
                 history.userHistory(id, "Logged In");
 
                 response.sendRedirect("dashboard.jsp");
-//                File counterFile = new File("counter.txt");
-//                BufferedReader reader= new BufferedReader(new FileReader(counterFile));;
-//                int totalVisits = Integer.parseInt(reader.readLine());
+                }else{
+                    response.sendRedirect("login.jsp?msg=You were blocked by the admin, please contact support.");
+                }
 
             } else {
                 response.sendRedirect("login.jsp?msg=You have entered invalid email or password.");

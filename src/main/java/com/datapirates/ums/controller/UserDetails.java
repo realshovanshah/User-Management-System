@@ -25,6 +25,7 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "UserDetails", urlPatterns = {"/showUser"})
 public class UserDetails extends HttpServlet {
 
+    //gets detail of the given user id
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)

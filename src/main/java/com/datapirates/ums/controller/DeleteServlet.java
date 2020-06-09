@@ -25,6 +25,7 @@ import javax.servlet.http.HttpSession;
 @WebServlet("/delete")
 public class DeleteServlet extends HttpServlet {
 
+        //Gets id of the user to be deleted and sends it to dao
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)

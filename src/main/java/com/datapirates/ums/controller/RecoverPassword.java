@@ -24,6 +24,7 @@ import javax.servlet.http.HttpSession;
  */
 @WebServlet("/recoverPassword")
 public class RecoverPassword extends HttpServlet {
+    //Gets parameters from user input field and sends to dao
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)

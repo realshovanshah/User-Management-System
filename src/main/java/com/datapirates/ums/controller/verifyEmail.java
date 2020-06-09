@@ -22,6 +22,7 @@ import javax.servlet.http.HttpSession;
 @WebServlet("/verifyEmail")
 public class verifyEmail extends HttpServlet {
 
+    //takes the given email and sends it to dao
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -43,28 +44,6 @@ public class verifyEmail extends HttpServlet {
             ex.printStackTrace();
         }
 
-//        UserDao userDao = new UserDao();
-//        HttpSession session = request.getSession();
-//        
-//        String email = request.getParameter("email");
-//        String password = request.getParameter("nPass");
-//        String password2 = request.getParameter("cPass");
-//        
-//        User user = new User();
-//        user.setEmail(email);
-//        
-//        try {
-//            int result = userDao.forgotPassword(user);
-//            if (result != 0) {
-//                session.setAttribute("msg", "For the fact that we can't afford OTP-Verification, we assume that it is you who want to recover your password. <br><br> <strong>Your password is:<strong> ");
-//                
-//            } else {
-//                session.setAttribute("msg", "Oops! No user with that exists.");
-//            }
-//            response.sendRedirect("forgot_password.jsp?msg=error");      
-//        } catch (Exception ex) {
-//            Logger.getLogger(verifyEmail.class.getName()).log(Level.SEVERE, null, ex);
-//        }
     }
 
     @Override

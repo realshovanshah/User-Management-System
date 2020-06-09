@@ -47,7 +47,7 @@
                                             <input type="text" id="inputEmail" class="form-control" placeholder="Confirm Password" name="password2">
                                             <label for="inputEmail">Confirm Password</label>
                                         </div>-->
-
+                                        <div class="text-center  mb-3"><p id="msg" style="color: red">${param.msg}</p></div>
                                         <div class="text-center custom-control custom-checkbox mb-3">
                                             <input type="checkbox" class="custom-control-input" id="customCheck1">
                                             <label class="custom-control-label" for="customCheck1">I agree to the UMS Terms & Condition</label>

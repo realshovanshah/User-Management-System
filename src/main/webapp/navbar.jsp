@@ -107,14 +107,6 @@ String email = (String) session.getAttribute("email");
                             </ul>
                         </li>
                         <li class="menu-item-has-children dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-bar-chart"></i>Charts</a>
-                            <ul class="sub-menu children dropdown-menu">
-                                <li><i class="menu-icon fa fa-line-chart"></i><a href="charts-chartjs.html">Chart JS</a></li>
-                                <li><i class="menu-icon fa fa-area-chart"></i><a href="charts-flot.html">Flot Chart</a></li>
-                                <li><i class="menu-icon fa fa-pie-chart"></i><a href="charts-peity.html">Peity Chart</a></li>
-                            </ul>
-                        </li>
-                        <li class="menu-item-has-children dropdown">
 
                             <ul class="sub-menu children dropdown-menu">
                                 <li><i class="menu-icon fa fa-th"></i><a href="forms-basic.html">Basic Form</a></li>
@@ -134,7 +126,7 @@ String email = (String) session.getAttribute("email");
 
 
                         <li class="menu-item-has-children dropdown">
-                            <a href="userActivity.jsp" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-area-chart"></i>History</a>
+                            <a href="user_history.jsp" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-area-chart"></i>My History</a>
 
                         </li>
                         
@@ -150,7 +142,7 @@ String email = (String) session.getAttribute("email");
                             </ul>
                         </li>
                         <li>
-                            <a href="user_activity.jsp"> <i class="menu-icon fa fa-area-chart "></i>Report </a>
+                            <a href="report.jsp"> <i class="menu-icon fa fa-area-chart "></i>Report </a>
                         </li>
                         <li>
                             <a href="user_activity.jsp"> <i class="menu-icon ti-email "></i>User Activity </a>

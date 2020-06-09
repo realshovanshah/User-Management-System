@@ -18,6 +18,7 @@ import java.sql.SQLException;
  */
 public class UserDao {
 
+    //registers the given data into the database
     public static void register(User user) throws Exception {
 
         try {
@@ -36,6 +37,7 @@ public class UserDao {
         }
 
     }
+    //registers the given data from the database and returns them`
 
     public static User validateUser(String email, String password) {
         User user = null;
@@ -69,6 +71,8 @@ public class UserDao {
         return user;
 
     }
+    
+    //adds the given data into the database
 
     public static void addUser(User user) throws Exception {
 
@@ -91,6 +95,8 @@ public class UserDao {
         }
 
     }
+
+        //updates users' given data from the database
 
     public static void updateUser(User user) throws Exception {
 
@@ -115,28 +121,7 @@ public class UserDao {
 
     }
 
-//    public static void recoverPassowrd(String email, String npass) throws Exception {
-//        try {
-//            Connection con = DBConnection.getConnection();
-//            String sql = "UPDATE user SET password=? WHERE email=?;";
-//            
-//            PreparedStatement pstmt = con.prepareStatement(sql);
-//            pstmt.setString(2, email);
-//            pstmt.setString(1, npass);
-//            
-//            int i = pstmt.executeUpdate();
-//            
-//            if(i>0){
-//                response.sendRedirect("recover.jsp?msg=Password changed successfully");
-//            }
-//            else{
-//                response.sendRedirect("");
-//            }
-//
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//    }
+    //returns user details of the given user
     public User userDetails(int id) throws ClassNotFoundException {
         User user = null;
         try {
@@ -165,6 +150,7 @@ public class UserDao {
         return user;
     }
 
+    //deletes user with given id from the database
     public void delete(int id) throws ClassNotFoundException {
         try {
             String sql = "DELETE FROM USER WHERE ID = ?";
@@ -177,7 +163,8 @@ public class UserDao {
         } catch (SQLException e) {
         }
     }
-
+    
+    //blocks user with given id from the database
     public void blockUser(int id) throws Exception {
 
         try {
@@ -196,6 +183,7 @@ public class UserDao {
 
     }
 
+        //unblocks user with given id from the database
     public void unblockUser(int id) throws Exception {
 
         try {
@@ -214,6 +202,7 @@ public class UserDao {
 
     }
 
+    //checks if the given emails exists in the database
     public static boolean verifyEmail(String email) {
 
         try {

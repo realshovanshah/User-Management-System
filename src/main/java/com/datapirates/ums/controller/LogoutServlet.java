@@ -22,6 +22,7 @@ import javax.servlet.http.HttpSession;
  */
 @WebServlet("/logout")
 public class LogoutServlet extends HttpServlet {
+    //Gets id of the user to log out and logs them out
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

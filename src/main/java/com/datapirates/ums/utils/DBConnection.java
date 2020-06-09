@@ -13,6 +13,8 @@ import java.sql.SQLException;
  *
  * @author Shah Jr
  */
+
+//class to get database connection 
 public class DBConnection {
     private static String driver = "com.mysql.cj.jdbc.Driver";
     private static String url = "jdbc:mysql://localhost:3306/ums?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
